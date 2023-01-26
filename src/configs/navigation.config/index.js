@@ -19,8 +19,8 @@ const navigationConfig = [
     {
         key: 'singleMenuItem',
 		path: '/single-menu-view',
-		title: 'Single menu item',
-		translateKey: 'nav.singleMenuItem',
+		title: 'Drivers',
+		translateKey: 'nav.Drivers',
 		icon: 'singleMenu',
 		type: NAV_ITEM_TYPE_ITEM,
 		authority: [],

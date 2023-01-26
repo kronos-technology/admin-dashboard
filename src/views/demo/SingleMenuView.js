@@ -1,9 +1,12 @@
 import React from 'react'
+import Driver from 'components/drivers/Driver'
+
 
 /** Example purpose only */
 const SingleMenuView = () => {
 	return (
-		<div>Singl</div>
+		
+		<Driver> </Driver>
 	)
 }
 

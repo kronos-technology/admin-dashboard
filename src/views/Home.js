@@ -1,12 +1,12 @@
 import React from 'react'
-import Customers from 'components/drivers/Driver'
+
 
 
 
 const Home = () => {
-	return (
-		<Customers/>
-	)
+
+return <h1>Welcome to Krono</h1>
+	
 }
 
 export default Home
