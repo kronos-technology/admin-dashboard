@@ -4,15 +4,19 @@ import {
 	HiOutlineDesktopComputer,
     HiOutlineTemplate,
     HiOutlineViewGridAdd,
-    HiOutlineHome
+    HiOutlineHome,
+    HiOutlineUserCircle
 } from 'react-icons/hi'
+
+
 
 const navigationIcon = {
     home: <HiOutlineHome />,
     singleMenu: <HiOutlineViewGridAdd />,
     collapseMenu: <HiOutlineTemplate />,
     groupSingleMenu: <HiOutlineDesktopComputer />,
-    groupCollapseMenu: <HiOutlineColorSwatch />
+    groupCollapseMenu: <HiOutlineColorSwatch />,
+    driver: <HiOutlineUserCircle/>
 }
 
 export default navigationIcon

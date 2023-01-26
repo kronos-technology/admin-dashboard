@@ -4,6 +4,7 @@ import {
     NAV_ITEM_TYPE_ITEM 
 } from 'constants/navigation.constant'
 
+
 const navigationConfig = [
     {
         key: 'home',
@@ -20,8 +21,8 @@ const navigationConfig = [
         key: 'singleMenuItem',
 		path: '/single-menu-view',
 		title: 'Drivers',
-		translateKey: 'nav.Drivers',
-		icon: 'singleMenu',
+		translateKey: 'Drivers',
+		icon: 'driver',
 		type: NAV_ITEM_TYPE_ITEM,
 		authority: [],
         subMenu: []
