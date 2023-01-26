@@ -1,8 +1,11 @@
 import React from 'react'
+import Customers from 'components/drivers/Driver'
+
+
 
 const Home = () => {
 	return (
-		<div>Home</div>
+		<Customers/>
 	)
 }
 
