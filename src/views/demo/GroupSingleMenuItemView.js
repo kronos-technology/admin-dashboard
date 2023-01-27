@@ -3,7 +3,7 @@ import React from 'react'
 /** Example purpose only */
 const GroupSingleMenuItemView = () => {
 	return (
-		<div>GroupSingleMenuItemView</div>
+		<p className='bg-green-600'>hp vista</p>
 	)
 }
 

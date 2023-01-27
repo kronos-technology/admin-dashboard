@@ -3,7 +3,7 @@ import React from 'react'
 /** Example purpose only */
 const GroupCollapseMenuItemView1 = () => {
 	return (
-		<div>GroupCollapseMenuItemView1</div>
+		<div><h1>COMPANIES</h1></div>
 	)
 }
 
