@@ -11,7 +11,7 @@ function getDate(dayString) {
 }
 
 export const crmDashboardData = {
-    statisticData: [
+    tatisticData: [
         {
             key: 'newLeads',
             label: 'New Leads',
@@ -26,7 +26,7 @@ export const crmDashboardData = {
         },
         {
             key: 'proposals',
-            label: 'Proposals',
+            label: 'Proposals',s
             value: 49,
             growShrink: -0.7
         },
