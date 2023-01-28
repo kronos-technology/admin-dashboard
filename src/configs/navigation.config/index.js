@@ -29,18 +29,18 @@ const navigationConfig = [
 		authority: [],
 		subMenu: [
 			{
-				key: 'GroupSingleMenuItemView',
-				path: '/Group-menu-item-view',
+				key: 'ViewCompanies.js',
+				path: '/src/views/demo/ViewCompanies.js',
 				title: 'Companies',
-				translateKey: 'Vehicles',
+				translateKey: 'Companies',
 				icon: 'companies',
 				type: NAV_ITEM_TYPE_ITEM,
 				authority: [],
 				subMenu: []
 			},
 			{
-				key: 'singleMenuItem',
-				path: '/single-menu-view',
+				key: 'viewDrivers',
+				path: '/src/views/demo/ViewDrivers.js',
 				title: 'Drivers',
 				translateKey: 'Drivers',
 				icon: 'driver',
@@ -50,8 +50,8 @@ const navigationConfig = [
 			},
 		
 			{
-				key: '',
-				path: '',
+				key: 'viewRoutes',
+				path: '/src/views/demo/ViewRoutes.js',
 				title: 'Routes',
 				translateKey: 'Routes',
 				icon: 'routes',
@@ -61,8 +61,8 @@ const navigationConfig = [
 			},
 			
 			{
-				key: '',
-				path: '',
+				key: 'viewTickets',
+				path: '/src/views/demo/ViewTickets.js',
 				title: 'Tickets',
 				translateKey: 'Tickets',
 				icon: 'tickets',
@@ -71,8 +71,8 @@ const navigationConfig = [
 				subMenu: []
 			},
 			{
-				key: '',
-				path: '',
+				key: 'viewVehicles',
+				path: '/src/views/demo/ViewVehicles.js',
 				title: 'Vehicles',
 				translateKey: 'Vehicles',
 				icon: 'vehicles',

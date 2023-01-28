@@ -3,11 +3,11 @@ import Driver from 'components/drivers/Driver'
 
 
 /** Example purpose only */
-const SingleMenuView = () => {
+const ViewDrivers = () => {
 	return (
 		
 		<Driver> </Driver>
 	)
 }
 
-export default SingleMenuView
+export default ViewDrivers
