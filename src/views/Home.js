@@ -1,4 +1,5 @@
 import React from 'react'
+import SignIn from './auth/SignIn'
 
 
 
@@ -6,7 +7,12 @@ import React from 'react'
 
 const Home = () => {
 
-return <h1>Welcome to Krono </h1>
+return (
+<div className='container'><SignIn/>
+</div>
+
+
+)
 	
 }
 
