@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-kronoadmindashboard-dev-202404-authRole",
+      "UnauthRoleArn": "arn:aws:iam::349156045847:role/amplify-kronoadmindashboard-dev-202404-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::349156045847:role/amplify-kronoadmindashboard-dev-202404-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-kronoadmindashboard-dev-202404-deployment",
+      "UnauthRoleName": "amplify-kronoadmindashboard-dev-202404-unauthRole",
+      "StackName": "amplify-kronoadmindashboard-dev-202404",
+      "StackId": "arn:aws:cloudformation:sa-east-1:349156045847:stack/amplify-kronoadmindashboard-dev-202404/f5755810-a105-11ed-847f-0216440f68da",
+      "AmplifyAppId": "dgewwytxqk41y"
+    },
+    "categories": {
+      "auth": {
+        "kronoadmindashboardd52e2e34": {
+          "userPoolId": "sa-east-1_CQHjUnws8",
+          "userPoolName": "UserPool6BA7E5F2-bMP0HjEuR4pO",
+          "webClientId": "7absuoouim8kaim1b53kn6b0ls",
+          "nativeClientId": "7absuoouim8kaim1b53kn6b0ls"
+        }
+      }
+    }
+  }
+}
