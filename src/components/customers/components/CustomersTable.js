@@ -1,5 +1,5 @@
 // import React, { useEffect, useCallback, useMemo } from 'react'
-import { DataTable } from 'components/shared'
+// import { DataTable } from 'components/shared'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { getCustomers, setTableData } from '../store/dataSlice'
 // import { setSortedColumn } from '../store/stateSlice'
@@ -52,33 +52,7 @@ const columns = [
 		accessor:'phone',
 		// soportable: true,
 	},
-	{
-		Header: 'Status',
-		accessor: 'status',
-		// sortable: true,
-		// Cell: props => {
-		// 	const row = props.row.original
-		// 	return (
-		// 		<div className="flex items-center">
-		// 			<Badge className={statusColor[row.status]} />
-		// 			<span className="ml-2 rtl:mr-2 capitalize">{row.status}</span>
-		// 		</div>
-		// 	)
-		// },
-	},
-	{
-		Header: 'Last online',
-		accessor: 'lastOnline',
-		sortable: true,
-		// Cell: props => {
-		// 	const row = props.row.original
-		// 	return (
-		// 		<div className="flex items-center">
-		// 			{dayjs.unix(row.lastOnline).format('MM/DD/YYYY')}
-		// 		</div>
-		// 	)
-		// },
-	},
+	
 	// {
 	// 	Header: '',
 	// 	id: 'action',
@@ -239,9 +213,10 @@ const data =[
 		"lastName": "Rodriguez",
 		"name": "Jhon",
 		"phone": "+573101523698"
-	}
+	},
+	
 ]
-const { Tr, Th, Td, THead, TBody, Sorter } = Table 	
+const { Tr, Th, Td, THead, TBody,Sorter } = Table 	
 
 
 const Customers = () => {
@@ -302,7 +277,7 @@ const Customers = () => {
 						<Th {...column.getHeaderProps(column.getSortByToggleProps())}>
 							{column.render('Header')}
 							<span>
-								<Sorter sort={column.isSortedDesc}/>
+								<Sorter sort={""}/>
 							</span>
 						</Th>
 					))}
