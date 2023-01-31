@@ -1,3 +1,4 @@
+
 import React from 'react'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { useDispatch } from 'react-redux'
@@ -6,7 +7,6 @@ import { Link } from 'react-router-dom'
 import CustomerEditDialog from './CustomerEditDialog'
 import { Table } from 'components/ui'
 import { useTable, useSortBy } from 'react-table'
-
 
 
 const ActionColumn = ({row}) => {
@@ -46,12 +46,10 @@ const NameColumn = ({row}) => {
 	)
 }
 
-
-
 const columns = [
 	{
-		Header: 'CompanyId',
-		accessor: 'companyId',
+		Header: 'RouteId',
+		accessor: 'routeId',
 		sortable: true,
 		Cell: props => {
 			const row = props.row.original
@@ -60,35 +58,21 @@ const columns = [
 	},
 	
 	{
-		Header: 'Name',
-		accessor: 'name',
+		Header: 'Origin',
+		accessor: 'origin',
 		// sortable: true,
 	},
 	{
-		Header: 'Phone',
-		accessor:'phone',
+		Header: 'Destination',
+		accessor:'destination',
 		// soportable: true,
 	},
 	{
-		Header: 'Email',
-		accessor:'email',
+		Header: 'Geojson',
+		accessor:'geojson',
 		// soportable: true,
 	},
-	{
-		Header: 'City',
-		accessor:'city',
-		// soportable: true,
-	},
-	{
-		Header: 'Address',
-		accessor:'address',
-		// soportable: true,
-	},
-    {
-		Header: 'Nit',
-		accessor:'nit',
-		// soportable: true,
-	},
+	
 	
 	
 	{
@@ -99,55 +83,43 @@ const columns = [
 	},
 ]
 const data =[
-	{
-        "companyId": "EXPRESO-SABANA",
-        "name": "Expreso De La Sabana SAS",
-        "phone": "+576012635301",
-        "email": "expresoSabana@gmail.com",
-        "city": "Bogota",
-        "address": "DIAGONAL 23 69 60 OF 702",
-        "nit": ""
+    {
+        "routeId": "FACATA-MADRID-BOGOTA-13",
+        "origin": "FACATATIVA",
+        "destination": "BOGOTA",
+        "geojson": "s3://locationtoroute1.geojson"
     },
     {
-        "companyId": "FLOTA-AYACUCHO",
-        "name": "Flota Ayacucho LTDA",
-        "phone": "+576014203733",
-        "email": "flotaAyacucho@gmail.com",
-        "city": "Facatativa",
-        "address": "Carrera 2 # 15 - 31",
-        "nit": ""
+        "routeId": "FACATA-VTEMAD-BOGOTA-13",
+        "origin": "FACATATIVA",
+        "destination": "BOGOTA",
+        "geojson": "s3://locationtoroute2.geojson"
     },
     {
-        "companyId": "TRANS-VILLETAX",
-        "name": "Transportes Villetax SA",
-        "phone": "+576018901288",
-        "email": "trasportesVilletax@gmail.com",
-        "city": "Facatativa",
-        "address": "Carrera 3 # 9 - 35",
-        "nit": ""
+        "routeId": "FACATA-BOGOTA-80",
+        "origin": "FACATATIVA",
+        "destination": "BOGOTA",
+        "geojson": "s3://locationtoroute3.geojson"
     },
     {
-        "companyId": "RAPIDO-SANTA",
-        "name": "Rapido Santa SA",
-        "phone": "+576018901288",
-        "email": "rapidoSanta@gmail.com",
-        "city": "Facatativa",
-        "address": "Carrera 3 # 9 - 35",
-        "nit": ""
+        "routeId": "FACATA-BOJACA",
+        "origin": "FACATATIVA",
+        "destination": "BOJACA",
+        "geojson": "s3://locationtoroute4.geojson"
     },
     {
-        "companyId": "FLOTA-ANDINA",
-        "name": "Flota Andina LTDA",
-        "phone": "+576035909788",
-        "email": "flotaAndina@gmail.com",
-        "city": "Facatativa",
-        "address": "Cl 22a sur #43",
-        "nit": ""
+        "routeId": "BOJACA-BOGOTA",
+        "origin": "BOJACA",
+        "destination": "BOGOTA",
+        "geojson": "s3://locationtoroute5.geojson"
     }
 	
-] 	
+]
+
 const { Tr, Th, Td, THead, TBody,Sorter } = Table
-const CompaniesTable = () => {
+
+
+const RoutesTable = () => {
     const {
 		getTableProps,
 		getTableBodyProps,
@@ -155,9 +127,8 @@ const CompaniesTable = () => {
 		rows,
 		prepareRow,
 	} = useTable({ columns, data, }, useSortBy)
-	
-	return (
-		<><>
+  return (
+    <><>
 		<Table {...getTableProps()}>
 			<THead>
 			{headerGroups.map(headerGroup => (
@@ -203,7 +174,7 @@ const CompaniesTable = () => {
 			/> */}
 			<CustomerEditDialog />
 		</>
-	)
+  )
 }
 
-export default CompaniesTable
+export default RoutesTable
