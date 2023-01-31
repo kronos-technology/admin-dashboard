@@ -1,6 +1,9 @@
 // import React, { useEffect, useCallback, useMemo } from 'react'
 // import { DataTable } from 'components/shared'
-// import { useDispatch, useSelector } from 'react-redux'
+import useThemeClass from 'utils/hooks/useThemeClass'
+import { useDispatch } from 'react-redux'
+import { Avatar } from 'components/ui'
+import { Link } from 'react-router-dom'
 // import { getCustomers, setTableData } from '../store/dataSlice'
 // import { setSortedColumn } from '../store/stateSlice'
 import CustomerEditDialog from './CustomerEditDialog'
@@ -9,6 +12,42 @@ import { Table } from 'components/ui'
 import { useTable, useSortBy } from 'react-table'
 
 
+const ActionColumn = ({row}) => {
+	const { textTheme } = useThemeClass()
+	const dispatch = useDispatch()
+
+	const onEdit = () => {
+		// eslint-disable-next-line no-undef
+		dispatch(setDrawerOpen())
+		// dispatch(setSelectedCustomer(row))
+	}
+
+	return (
+		<div 
+			className={`${textTheme} cursor-pointer select-none font-semibold`}
+			onClick={onEdit}
+		>
+			Edit
+		</div>
+	)
+}
+
+const NameColumn = ({row}) => {
+
+	const { textTheme } = useThemeClass()
+
+	return (
+		<div className="flex items-center">
+			<Avatar size={28} shape="circle" src={row.img} />
+			<Link 
+				className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold`}
+				to={`/app/crm/customer-details?id=${row.id}`}
+			>
+				{row.name}
+			</Link>
+		</div>
+	)
+}
 
 
 
@@ -16,11 +55,11 @@ const columns = [
 	{
 		Header: 'Name',
 		accessor: 'name',
-		// sortable: true,
-		// Cell: props => {
-		// 	const row = props.row.original
-		// 	return <NameColumn row={row} />
-		// },
+		sortable: true,
+		Cell: props => {
+			const row = props.row.original
+			return <NameColumn row={row} />
+		},
 	},
 	{
 		Header: 'Lastname',
@@ -53,12 +92,12 @@ const columns = [
 		// soportable: true,
 	},
 	
-	// {
-	// 	Header: '',
-	// 	id: 'action',
-	// 	accessor: (row) => row,
-	// 	Cell: props => <ActionColumn row={props.row.original} />
-	// },
+	{
+		Header: '',
+		id: 'action',
+		accessor: (row) => row,
+		Cell: props => <ActionColumn row={props.row.original} />
+	},
 ]
 const data =[
 	{
