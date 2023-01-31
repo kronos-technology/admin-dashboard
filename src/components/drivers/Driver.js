@@ -3,10 +3,10 @@ import { AdaptableCard } from 'components/shared'
 import CustomersTable from '../customers/components/CustomersTable'
 import CustomersTableTools from 'components/customers/components/CustomersTableTools'
 import CustomerTableFilter from 'components/customers/components/CustomerTableFilter'
-
-// import CustomerStatistic from '../customers/components/CustomerStatistic'
 import { injectReducer } from 'store/index'
 import reducer from '../customers/store'
+
+
 
 injectReducer('crmCustomers', reducer)
 
