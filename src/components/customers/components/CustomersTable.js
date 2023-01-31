@@ -326,7 +326,7 @@ const Customers = () => {
 			</TBody>
 		</Table>
 	</>
-			<DataTable
+			{/* <DataTable
 				columns={columns} 
 				data={data}
 				skeletonAvatarColumns={[0]}
@@ -336,7 +336,7 @@ const Customers = () => {
 				onPaginationChange={''}
 				onSelectChange={''}
 				onSort={''}
-			/>
+			/> */}
 			<CustomerEditDialog />
 		</>
 	)

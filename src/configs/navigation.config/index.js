@@ -6,6 +6,7 @@ import {
 
 
 const navigationConfig = [
+
     {
         key: 'home',
 		path: '/home',
