@@ -1,8 +1,8 @@
 import React from 'react';
 import { AdaptableCard } from 'components/shared';
 import Driver from 'components/drivers/Driver';
-import CustomersTableTools from 'components/customers/components/CustomersTableTools';
-import CustomerTableFilter from 'components/customers/components/CustomerTableFilter';
+import CustomersTableTools from 'views/administrator/Drivers/components/CustomersTableTools';
+import CustomerTableFilter from 'views/administrator/Drivers/components/CustomerTableFilter';
 
 /** Example purpose only */
 const ViewDrivers = () => {

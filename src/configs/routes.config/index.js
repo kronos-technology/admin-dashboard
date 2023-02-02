@@ -18,38 +18,35 @@ export const protectedRoutes = [
         component: React.lazy(() => import('views/Home')),
         authority: [],
     },
-    /** Example purpose only, please remove */
     {
-        key: 'viewDrivers',
-        path: '/src/views/demo/ViewDrivers.js',
-        component: React.lazy(() => import('views/demo/ViewDrivers')),
+        key: 'viewCompanies',
+        path: '/administrator/companies',
+        component: React.lazy(() => import('views/administrator/Drivers')),
         authority: [],
     },
     {
-        
-            key: 'viewCompanies',
-            path: '/src/views/demo/ViewCompanies.js',
-            component: React.lazy(() => import('views/demo/ViewCompanies')),
-            authority: [],
-          
-        
+        key: 'viewDrivers',
+        path: '/administrator/drivers',
+        component: React.lazy(() => import('views/administrator/Drivers')),
+        authority: [],
     },
+
     {
         key: 'viewRoutes',
-        path: '/src/views/demo/ViewRoutes.js',
-        component: React.lazy(() => import('views/demo/ViewRoutes')),
+        path: '/administrator/routes',
+        component: React.lazy(() => import('views/administrator/Drivers')),
         authority: [],
     },
     {
         key: 'viewTickets',
         path: '/src/views/demo/ViewTickets.js',
-        component: React.lazy(() => import('views/demo/ViewTickets')),
+        component: React.lazy(() => import('views/administrator/Drivers')),
         authority: [],
     },
     {
         key: 'viewVehicles',
         path: '/src/views/demo/ViewVehicles.js',
-        component: React.lazy(() => import('views/demo/ViewVehicles')),
+        component: React.lazy(() => import('views/administrator/Drivers')),
         authority: [],
     },
     // {

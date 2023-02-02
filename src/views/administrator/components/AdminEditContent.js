@@ -1,13 +1,11 @@
 import React, { forwardRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCustomerList, putCustomer } from '../store/dataSlice'
-import { setDrawerClose } from '../store/stateSlice'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
 import CustomerForm from 'views/crm/CustomerForm'
 import dayjs from 'dayjs'
 
-const CustomerEditContent = forwardRef((_, ref) => {
+const AdminEditContent = forwardRef((_, ref) => {
 
 	const dispatch = useDispatch()
 
@@ -16,10 +14,10 @@ const CustomerEditContent = forwardRef((_, ref) => {
 	const { id } = customer
 
 	const onFormSubmit = values => {
-		const { 
-			name, 
-			birthday, 
-			email, 
+		const {
+			name,
+			birthday,
+			email,
 			img,
 			location,
 			title,
@@ -53,19 +51,18 @@ const CustomerEditContent = forwardRef((_, ref) => {
 		})
 		if(!isEmpty(editedCustomer)) {
 			console.log('editedCustomer', editedCustomer)
-			dispatch(putCustomer(editedCustomer))
+
 		}
-		dispatch(setDrawerClose())
-		dispatch(setCustomerList(newData))
+
 	}
-	
+
 	return (
-		<CustomerForm 
-			ref={ref} 
+		<CustomerForm
+			ref={ref}
 			onFormSubmit={onFormSubmit}
 			customer={customer}
 		/>
 	)
 })
 
-export default CustomerEditContent
+export default AdminEditContent
