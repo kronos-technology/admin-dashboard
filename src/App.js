@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from './store'
 import Theme from 'components/template/Theme'
 import Layout from 'components/layout'
+
 import history from './history'
 import mockServer from './mock'
 import appConfig from 'configs/app.config'
@@ -27,9 +28,9 @@ function App() {
 			<PersistGate loading={null} persistor={persistor}>
 				<BrowserRouter history={history}>
 					<Theme>
-						<Layout />
+						<Layout/>
 					</Theme>
-				</BrowserRouter >
+				</BrowserRouter>
 			</PersistGate>
 		</Provider>
 	)

@@ -4,15 +4,29 @@ import {
 	HiOutlineDesktopComputer,
     HiOutlineTemplate,
     HiOutlineViewGridAdd,
-    HiOutlineHome
-} from 'react-icons/hi'
+    HiOutlineHome,
+    HiOutlineUserCircle,
+    HiOutlineOfficeBuilding
+} from 'react-icons/hi';
+
+
+import { TiTicket } from "react-icons/ti";
+import {  TbRoute } from "react-icons/tb";
+import {RiBusFill} from "react-icons/ri";
+
+
 
 const navigationIcon = {
     home: <HiOutlineHome />,
     singleMenu: <HiOutlineViewGridAdd />,
     collapseMenu: <HiOutlineTemplate />,
     groupSingleMenu: <HiOutlineDesktopComputer />,
-    groupCollapseMenu: <HiOutlineColorSwatch />
+    groupCollapseMenu: <HiOutlineColorSwatch />,
+    driver: <HiOutlineUserCircle/>,
+    tickets: <TiTicket/>,
+    routes: <TbRoute/>,
+    vehicles:<RiBusFill/>,
+    companies:<HiOutlineOfficeBuilding/>
 }
 
 export default navigationIcon
