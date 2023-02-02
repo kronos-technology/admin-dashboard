@@ -6,7 +6,7 @@ import AdminTableFilter from './AdminTableFilter'
 import { injectReducer } from 'store/index'
 
 
-const AdministratorTable = (columns, data) => {
+const AdministratorTable = ({columns, data}) => {
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">

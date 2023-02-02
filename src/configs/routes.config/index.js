@@ -19,40 +19,35 @@ export const protectedRoutes = [
         authority: [],
     },
     {
-        key: 'viewCompanies',
+        key: 'adminCompanies',
         path: '/administrator/companies',
-        component: React.lazy(() => import('views/administrator/Drivers')),
+        component: React.lazy(() => import('views/administrator/Companies')),
         authority: [],
     },
     {
-        key: 'viewDrivers',
+        key: 'adminDrivers',
         path: '/administrator/drivers',
         component: React.lazy(() => import('views/administrator/Drivers')),
         authority: [],
     },
 
     {
-        key: 'viewRoutes',
+        key: 'adminRoutes',
         path: '/administrator/routes',
-        component: React.lazy(() => import('views/administrator/Drivers')),
+        component: React.lazy(() => import('views/administrator/Routes')),
         authority: [],
     },
     {
-        key: 'viewTickets',
-        path: '/src/views/demo/ViewTickets.js',
-        component: React.lazy(() => import('views/administrator/Drivers')),
+        key: 'adminTickets',
+        path: '/administrator/tickets',
+        component: React.lazy(() => import('views/administrator/Tickets')),
         authority: [],
     },
     {
-        key: 'viewVehicles',
-        path: '/src/views/demo/ViewVehicles.js',
-        component: React.lazy(() => import('views/administrator/Drivers')),
+        key: 'adminVehicles',
+        path: '/administrator/vehicles',
+        component: React.lazy(() => import('views/administrator/Vehicles')),
         authority: [],
     },
-    // {
-    //     key: 'groupMenu.collapse.item2',
-    //     path: '/group-collapse-menu-item-view-2',
-    //     component: React.lazy(() => import('views/demo/GroupCollapseMenuItemView2')),
-    //     authority: [],
-    // },
+
 ]

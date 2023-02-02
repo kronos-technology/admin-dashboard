@@ -45,7 +45,7 @@ const NameColumn = ({row}) => {
 	)
 }
 
-const columns = [
+let columns = [
 	{
 		Header: 'Name',
 		accessor: 'name',
@@ -93,7 +93,7 @@ const columns = [
 		Cell: props => <ActionColumn row={props.row.original} />
 	},
 ]
-const data =[
+let data =[
 	{
 		"birthdate": "1988-05-05",
 		"companyId": "EXPRESO-SABANA",
@@ -246,9 +246,10 @@ const data =[
 		"lastName": "Rodriguez",
 		"name": "Jhon",
 		"phone": "+573101523698"
-	},
+	}
 ]
 const Drivers = () => {
+	
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">

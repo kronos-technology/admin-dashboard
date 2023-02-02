@@ -30,7 +30,7 @@ const navigationConfig = [
 		authority: [],
 		subMenu: [
 			{
-				key: 'viewCompanies',
+				key: 'adminCompanies',
 				path: '/administrator/companies',
 				title: 'Companies',
 				translateKey: 'Companies',
@@ -40,7 +40,7 @@ const navigationConfig = [
 				subMenu: []
 			},
 			{
-				key: 'viewDrivers',
+				key: 'adminDrivers',
 				path: '/administrator/drivers',
 				title: 'Drivers',
 				translateKey: 'Drivers',
@@ -51,7 +51,7 @@ const navigationConfig = [
 			},
 		
 			{
-				key: 'viewRoutes',
+				key: 'adminRoutes',
 				path: '/administrator/routes',
 				title: 'Routes',
 				translateKey: 'Routes',
@@ -62,8 +62,8 @@ const navigationConfig = [
 			},
 			
 			{
-				key: 'viewTickets',
-				path: '/src/views/demo/ViewTickets.js',
+				key: 'adminTickets',
+				path: '/administrator/tickets',
 				title: 'Tickets',
 				translateKey: 'Tickets',
 				icon: 'tickets',
@@ -72,8 +72,8 @@ const navigationConfig = [
 				subMenu: []
 			},
 			{
-				key: 'viewVehicles',
-				path: '/src/views/demo/ViewVehicles.js',
+				key: 'adminVehicles',
+				path: '/administrator/vehicles',
 				title: 'Vehicles',
 				translateKey: 'Vehicles',
 				icon: 'vehicles',

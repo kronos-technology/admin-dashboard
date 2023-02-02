@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
-import CustomerForm from 'views/crm/CustomerForm'
 import dayjs from 'dayjs'
 
 const AdminEditContent = forwardRef((_, ref) => {
@@ -56,13 +55,7 @@ const AdminEditContent = forwardRef((_, ref) => {
 
 	}
 
-	return (
-		<CustomerForm
-			ref={ref}
-			onFormSubmit={onFormSubmit}
-			customer={customer}
-		/>
-	)
+	return 
 })
 
 export default AdminEditContent
