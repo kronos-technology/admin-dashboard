@@ -144,6 +144,7 @@ let data =[
 	}
   
   ]
+  
 const Companies = () => {
     return (
         <>

@@ -49,5 +49,11 @@ export const protectedRoutes = [
         component: React.lazy(() => import('views/administrator/Vehicles')),
         authority: [],
     },
+        {
+        key: 'checkpoint',
+        path: '/administrator/checkpoint',
+        component: React.lazy(() => import('views/administrator/Checkpoint')),
+        authority: [],
+    },
 
 ]
