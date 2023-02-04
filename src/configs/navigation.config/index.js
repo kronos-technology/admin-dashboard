@@ -86,7 +86,7 @@ const navigationConfig = [
 				path: '/administrator/checkpoint',
 				title: 'checkpoint',
 				translateKey: 'checkpoint',
-				icon: 'RadioChecked',
+				icon: 'checkpoint',
 				type: NAV_ITEM_TYPE_ITEM,
 				authority: [],
 				subMenu: []
