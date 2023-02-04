@@ -8,7 +8,11 @@ import { useDispatch } from 'react-redux'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
 injectReducer('crmCustomers', reducer)
+
+
+
 const ActionColumn = ({row}) => {
+	
 	const { textTheme } = useThemeClass()
 	const dispatch = useDispatch()
 
@@ -90,6 +94,12 @@ let columns = [
 		accessor:'nit',
 		// soportable: true,
 	},
+		{
+		Header: '',
+		id: 'action',
+		accessor: (row) => row,
+		Cell: props => <ActionColumn row={props.row.original} />
+	},
 ]
 let data =[ 
 	{
@@ -146,6 +156,7 @@ let data =[
   ]
   
 const Companies = () => {
+	
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">

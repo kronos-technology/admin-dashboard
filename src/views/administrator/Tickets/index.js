@@ -8,7 +8,9 @@ import { useDispatch } from 'react-redux'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
 injectReducer('crmCustomers', reducer)
+
 const ActionColumn = ({row}) => {
+    
 	const { textTheme } = useThemeClass()
 	const dispatch = useDispatch()
 
@@ -71,7 +73,13 @@ const columns = [
 		Header: 'Driver',
 		accessor:'driverId',
 		// soportable: true,
-	}
+	},
+			{
+		Header: '',
+		id: 'action',
+		accessor: (row) => row,
+		Cell: props => <ActionColumn row={props.row.original} />
+	},
 ]
 
 const data = [

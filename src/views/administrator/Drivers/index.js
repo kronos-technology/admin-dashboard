@@ -8,7 +8,10 @@ import { useDispatch } from 'react-redux'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
 injectReducer('crmCustomers', reducer)
+
+
 const ActionColumn = ({row}) => {
+	
 	const { textTheme } = useThemeClass()
 	const dispatch = useDispatch()
 
@@ -44,6 +47,9 @@ const NameColumn = ({row}) => {
 		</div>
 	)
 }
+
+
+
 
 let columns = [
 	{
