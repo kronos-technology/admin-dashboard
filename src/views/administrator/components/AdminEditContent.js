@@ -3,14 +3,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
 import dayjs from 'dayjs'
+import DriverForm from '../Drivers/DriverForm/DriverForm'
 
 const AdminEditContent = forwardRef((_, ref) => {
+	
+	const customer =  {
+	    name: 'fredy',
+		birthday: '08-09-1987',
+		email: 'fredy@gmai.com',
+		img:'',
+		location:'',
+		title: 'prueba',
+		phoneNumber: '3058134980',
+		facebook:'',
+		twitter: '',
+		pinterest: '',
+		linkedIn: '',
+	}
 
-	const dispatch = useDispatch()
+	
 
-	const customer = useSelector((state) => state.crmCustomers.state.selectedCustomer)
-	const data = useSelector((state) => state.crmCustomers.data.customerList)
-	const { id } = customer
 
 	const onFormSubmit = values => {
 		const {
@@ -38,24 +50,19 @@ const AdminEditContent = forwardRef((_, ref) => {
 			pinterest,
 			linkedIn
 		}
-		let newData = cloneDeep(data)
-		let editedCustomer = {}
-		newData = newData.map(elm => {
-			if (elm.id === id) {
-				elm = {...elm, ...basicInfo}
-				elm.personalInfo = {...elm.personalInfo, ...personalInfo}
-				editedCustomer = elm
-			}
-			return elm
-		})
-		if(!isEmpty(editedCustomer)) {
-			console.log('editedCustomer', editedCustomer)
-
-		}
+	
 
 	}
 
-	return 
+	return (
+		
+		
+		<DriverForm
+		ref={ref} 
+			onFormSubmit={onFormSubmit}
+			customer={customer}
+		/>
+		)
 })
 
 export default AdminEditContent

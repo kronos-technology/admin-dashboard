@@ -7,6 +7,7 @@ import useThemeClass from 'utils/hooks/useThemeClass'
 import { useDispatch } from 'react-redux'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
+
 injectReducer('crmCustomers', reducer)
 
 const ActionColumn = ({row}) => {
@@ -173,6 +174,8 @@ const checkpoint = () => {
             <AdaptableCard className="h-full" bodyClass="h-full">
             <AdministratorTable columns={columns} data={data}/>
             </AdaptableCard>
+            
+            
         </>
     )
     }

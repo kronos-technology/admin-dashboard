@@ -4,7 +4,7 @@ import {
 	Drawer,
 } from 'components/ui'
 import AdminEditContent from './AdminEditContent'
-import { useDispatch, useSelector } from 'react-redux'
+
 
 
 const DrawerFooter = ({onSaveClick, onCancel}) => {
@@ -17,6 +17,8 @@ const DrawerFooter = ({onSaveClick, onCancel}) => {
 }
 
 const AdminEditDialog = () => {
+	
+
 
 
 	const formikRef = useRef()
@@ -27,14 +29,14 @@ const AdminEditDialog = () => {
 
 	return (
 		<Drawer
-			isOpen={false}
+			isOpen={true}
 			onClose={()=>{}}
 			onRequestClose={()=>{}}
 			closable={false}
 			bodyClass="p-0"
 			footer={<DrawerFooter onCancel={()=>{}} onSaveClick={formSubmit} />}
 		>
-			<AdminEditContent ref={formikRef} />
+			<AdminEditContent  />
 		</Drawer>
 	)
 }

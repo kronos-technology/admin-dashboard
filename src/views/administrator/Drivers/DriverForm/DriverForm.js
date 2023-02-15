@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
 
 const { TabNav, TabList, TabContent } = Tabs
 
-const CustomerForm = forwardRef((props, ref) => {
+const DriverForm = forwardRef((props, ref) => {
 
 	const { customer, onFormSubmit } = props
 
@@ -78,4 +78,4 @@ const CustomerForm = forwardRef((props, ref) => {
 	)
 })
 
-export default CustomerForm
+export default DriverForm
