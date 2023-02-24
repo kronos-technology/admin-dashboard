@@ -8,13 +8,15 @@ import React from 'react'
 const Home = () => {
 
 return (
-<div className='flex justify-center'>
 
-<h1 className='text-blue-800'>Module under construction</h1>
-   <div>
-      <img src="src/logoCrono.jpeg" alt="logo" />
-    </div>
-</div>
+      <div className=''>
+      
+         <h1 className='text-blue-800'>Module under construction</h1>
+       
+         <img src="logoCrono.jpeg" alt="logosssss" />
+       
+         
+      </div>
 
 
 )

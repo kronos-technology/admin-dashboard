@@ -10,8 +10,10 @@ function getDate(dayString) {
     return dayString.replace("YEAR", year).replace("MONTH", month)
 }
 
-export const crmDashboardData = {
-    tatisticData: [
+export const driverData = {
+    
+    
+    statisticData: [
         {
             key: 'newLeads',
             label: 'New Leads',
@@ -26,7 +28,7 @@ export const crmDashboardData = {
         },
         {
             key: 'proposals',
-            label: 'Proposals',s
+            label: 'Proposals',
             value: 49,
             growShrink: -0.7
         },
@@ -76,7 +78,7 @@ export const crmDashboardData = {
         },
         {
             id: 2,
-            name: "Terrance Moreno",
+            name: "Andres Quiñonez",
             avatar: "/img/avatars/thumb-2.jpg",
             status: 1,
             createdTime: 1632393600,

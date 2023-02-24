@@ -1,11 +1,19 @@
 import React, { forwardRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
 import dayjs from 'dayjs'
 import DriverForm from '../Drivers/DriverForm/DriverForm'
 
 const AdminEditContent = forwardRef((_, ref) => {
+	
+	
+	const dispatch = useDispatch()
+
+	
+	const data = useSelector()
+	const { id } = customer
 	
 	const customer =  {
 	    name: 'fredy',
@@ -39,7 +47,8 @@ const AdminEditContent = forwardRef((_, ref) => {
 			linkedIn
 		} = values
 
-		const basicInfo = {name, email, img }
+		const basicInfo = {name, email, img, linkedIn,   }
+		
 		const personalInfo = {
 			location,
 			title,
@@ -50,6 +59,7 @@ const AdminEditContent = forwardRef((_, ref) => {
 			pinterest,
 			linkedIn
 		}
+	
 	
 
 	}
