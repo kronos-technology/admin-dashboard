@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
 import dayjs from 'dayjs'
-import DriverForm from '../Drivers/DriverForm/DriverForm'
+import DriverForm from '../drivers/DriverForm/DriverForm'
 
 const AdminEditContent = forwardRef((_, ref) => {
 	

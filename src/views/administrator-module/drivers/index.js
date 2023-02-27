@@ -1,16 +1,17 @@
-import React  from 'react'
+import React, { useEffect, useCallback, useMemo } from 'react'
 import { AdaptableCard } from 'components/shared'
-import AdministratorTable from "../components/AdministratorTable";
+import AdminModule from "../components/AdminModule";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { useDispatch, useSelector } from 'react-redux'
+import { getDrivers, setTableData } from './store/dataSlice'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom';
 import AdminEditDialog from '../components/AdminEditDialog';
 
 
-injectReducer('crmCustomers', reducer)
+injectReducer('drivers', reducer)
 
 
 const ActionColumn = ({row}) => {
@@ -110,24 +111,25 @@ let columns = [
 const Drivers = () => {
 	
 	const dispatch = useDispatch()
-	const data = useSelector((state) => state.drivers.data.customerList)
+	const data = useSelector((state) => state.drivers.data.driversList)
 	const loading = useSelector((state) => state.drivers.data.loading)
 	const filterData = useSelector((state) => state.drivers.data.filterData)
 
 	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.drivers.data.tableData)
 	
+	const fetchData = useCallback(() => {
+		dispatch(getDrivers({pageIndex, pageSize, sort, query, filterData}))
+	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
+
+	useEffect(() => {
+		fetchData()
+	}, [fetchData, pageIndex, pageSize, sort, filterData])
+	
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">
-            
-            <AdministratorTable columns={columns} data={data}/>
-		
-		
-			
+            <AdminModule columns={columns} data={data}/>
             </AdaptableCard>
-          
-            <AdminEditDialog/>
-           
         </>
     )
     }

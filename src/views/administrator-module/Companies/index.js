@@ -1,13 +1,13 @@
 import React, {  } from 'react'
 import { AdaptableCard } from 'components/shared'
-import AdministratorTable from "../components/AdministratorTable";
+import AdministratorTable from "../components/AdminModule";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { useDispatch } from 'react-redux'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
-injectReducer('crmCustomers', reducer)
+injectReducer('companies', reducer)
 
 
 

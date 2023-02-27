@@ -1,20 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetCrmCustomers, apPutCrmCustomer, apiGetCrmCustomersStatistic } from 'services/CrmService'
+import { apiGetDrivers  } from 'services/CrmService'
 
-export const getDrivers = createAsyncThunk('administrator/drivers',async () => {
-    const response = await apiGetCrmCustomersStatistic()
-    return response
+export const getDrivers = createAsyncThunk('admin/drivers',async () => {
+    const response = await apiGetDrivers()
+    return response.data
 })
-
-
-
-
 
 const dataSlice = createSlice({
     name: 'drivers/data',
     initialState: {
         loading: false,
-        driverList: [],
+        driversList: [],
         tableData: {
             total: 0,
             pageIndex: 1,
@@ -33,8 +29,8 @@ const dataSlice = createSlice({
         setTableData: (state, action) => {
             state.tableData = action.payload
         },
-        setDriverList: (state, action) => {
-            state.driverList = action.payload
+        setDriversList: (state, action) => {
+            state.driversList = action.payload
         },
         setFilterData: (state, action) => {
             state.filterData = action.payload
@@ -43,7 +39,7 @@ const dataSlice = createSlice({
     extraReducers: {
         [getDrivers.fulfilled]: (state, action) => {
             
-            state.driverList = action.payload
+            state.driversList = action.payload
             state.tableData.total = action.payload.total
             state.loading = false
         },
@@ -56,7 +52,7 @@ const dataSlice = createSlice({
 
 export const { 
     setTableData,
-    setCustomerList,
+    setDriversLIst,
     setFilterData
 } = dataSlice.actions
 

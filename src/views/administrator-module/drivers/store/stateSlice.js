@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 const stateSlice = createSlice({
     name: 'drivers/state',
     initialState: {
-        
         drawerOpen: false,
         selectedDriver: {},
         sortedColumn: () => {},
@@ -25,7 +24,7 @@ const stateSlice = createSlice({
 })
 
 export const { 
-    setSelectedCustomer, 
+    setSelectedDriver, 
     setDrawerOpen, 
     setDrawerClose,
     setSortedColumn

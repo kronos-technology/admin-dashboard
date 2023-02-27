@@ -15,11 +15,17 @@ export async function apiGetCrmCalendar () {
     })
 }
 
-export async function apiGetCrmCustomers (data) {
+export async function apiGetDrivers () {
+    return ApiService.fetchData({
+        url: '/admin/drivers',
+        method: 'get',
+    })
+}
+
+export async function apiGetCrmCustomers () {
     return ApiService.fetchData({
         url: '/crm/customers',
-        method: 'post',
-        data
+        method: 'get',
     })
 }
 

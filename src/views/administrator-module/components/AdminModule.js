@@ -1,20 +1,22 @@
 import React from 'react'
 import { AdaptableCard } from 'components/shared'
-import AdminTable from './AdminTable'
+import { DataTable } from 'components/shared'
+import  AdminEditDialog  from "./AdminEditDialog";
 import AdminTableTools from './AdminTableTools'
 import AdminTableFilter from './AdminTableFilter'
 
 
-const AdministratorTable = ({columns, data}) => {
+const AdminModule = ({columns, data, }) => {
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">
             <AdminTableTools/>
-            <AdminTableFilter/>
-            <AdminTable columns={columns} data={data} />
+            <AdminTableFilter/>	
+            <DataTable columns={columns} data={data} />
+			<AdminEditDialog />
             </AdaptableCard>
         </>
     )
     }
 
-export default AdministratorTable
+export default AdminModule

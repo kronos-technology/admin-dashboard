@@ -3,7 +3,7 @@ import { createServer } from 'miragejs'
 import appConfig from 'configs/app.config'  
 
 
-import {driverData} from './data/driverData'
+import {driverData, driverList} from './data/driverData'
 
 import { driversFakeApi } from './fakeApi'
 
@@ -14,9 +14,7 @@ export default function mockServer({ environment = 'test' }) {
         environment,
         seeds(server) {
 			server.db.loadData({
-			    
-		    driverData
-		    
+		        driverList
 			})
 		},
         routes() {

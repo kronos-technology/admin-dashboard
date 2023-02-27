@@ -2,10 +2,7 @@
 
 export default function driversFakeApi (server, apiPrefix) {
 
-    server.get(`${apiPrefix}/administrator/drivers`, (schema) => {
-        
-        return schema.db.driverData
-    })
+    server.get(`${apiPrefix}/admin/drivers`, schema =>  schema.db.driverList )
     
     
 }

@@ -21,38 +21,38 @@ export const protectedRoutes = [
     {
         key: 'adminCompanies',
         path: '/administrator/companies',
-        component: React.lazy(() => import('views/administrator/Companies')),
+        component: React.lazy(() => import('views/administrator-module/Companies')),
         authority: [],
     },
     {
         key: 'adminDrivers',
         path: '/administrator/drivers',
-        component: React.lazy(() => import('views/administrator/Drivers')),
+        component: React.lazy(() => import('views/administrator-module/drivers')),
         authority: [],
     },
 
     {
         key: 'adminRoutes',
         path: '/administrator/routes',
-        component: React.lazy(() => import('views/administrator/Routes')),
+        component: React.lazy(() => import('views/administrator-module/Routes')),
         authority: [],
     },
     {
         key: 'adminTickets',
         path: '/administrator/tickets',
-        component: React.lazy(() => import('views/administrator/Tickets')),
+        component: React.lazy(() => import('views/administrator-module/Tickets')),
         authority: [],
     },
     {
         key: 'adminVehicles',
         path: '/administrator/vehicles',
-        component: React.lazy(() => import('views/administrator/Vehicles')),
+        component: React.lazy(() => import('views/administrator-module/Vehicles')),
         authority: [],
     },
         {
-        key: 'checkpoint',
+        key: 'adminCheckpoint',
         path: '/administrator/checkpoint',
-        component: React.lazy(() => import('views/administrator/Checkpoint')),
+        component: React.lazy(() => import('views/administrator-module/Checkpoint')),
         authority: [],
     },
 

@@ -5,12 +5,12 @@ import AdminTableFilter from './AdminTableFilter'
 import { useDispatch, useSelector } from 'react-redux'
 import cloneDeep from 'lodash/cloneDeep'
 
-const AdminTableTools = () => {
+const AdminTableTools = (tableData) => {
 
 
 	const inputRef = useRef()
 
-	const tableData = useSelector((state) => state.crmCustomers.data.tableData)
+	//const tableData = useSelector((state) => state.crmCustomers.data.tableData)
 
 	const handleInputChange = (val) => {
 		const newTableData = cloneDeep(tableData)
