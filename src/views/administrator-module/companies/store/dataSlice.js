@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetDrivers  } from 'services/AdministratorService'
+import { apiGetCompanies} from 'services/AdministratorService'
 
-export const getDrivers = createAsyncThunk('admin/drivers',async () => {
-    const response = await apiGetDrivers()
+export const getCompanies = createAsyncThunk('admin/companies',async () => {
+    const response = await apiGetCompanies()
     return response.data
 })
 
 const dataSlice = createSlice({
-    name: 'drivers/data',
+    name: 'companies/data',
     initialState: {
         loading: false,
-        driversList: [],
+        companiesList: [],
         tableData: {
             total: 0,
             pageIndex: 1,
@@ -29,30 +29,28 @@ const dataSlice = createSlice({
         setTableData: (state, action) => {
             state.tableData = action.payload
         },
-        setDriversList: (state, action) => {
-            state.driversList = action.payload
+        setCompaniesList: (state, action) => {
+            state.companiesList = action.payload
         },
         setFilterData: (state, action) => {
             state.filterData = action.payload
         },
     },
     extraReducers: {
-        [getDrivers.fulfilled]: (state, action) => {
-            
-            state.driversList = action.payload
+        [getCompanies.fulfilled]: (state, action) => {
+            state.companiesList = action.payload
             state.tableData.total = action.payload.total
             state.loading = false
         },
-        [getDrivers.pending]: (state) => {
+        [getCompanies.pending]: (state) => {
             state.loading = true
         },
-       
     }
 })
 
 export const { 
     setTableData,
-    setDriversLIst,
+    setCompaniesList,
     setFilterData
 } = dataSlice.actions
 

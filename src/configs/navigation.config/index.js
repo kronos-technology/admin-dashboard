@@ -84,8 +84,8 @@ const navigationConfig = [
 				{
 				key: 'checkpoint',
 				path: '/administrator/checkpoint',
-				title: 'checkpoint',
-				translateKey: 'checkpoint',
+				title: 'Checkpoint',
+				translateKey: 'Checkpoint',
 				icon: 'checkpoint',
 				type: NAV_ITEM_TYPE_ITEM,
 				authority: [],

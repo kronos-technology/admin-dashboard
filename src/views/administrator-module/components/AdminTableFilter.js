@@ -42,7 +42,7 @@ const AdminTableFilter = () => {
 
 	const dispatch = useDispatch()
 
-	const { status } = useSelector((state) => state.crmCustomers.data.filterData)
+	const { status } = "active"
 
 
 

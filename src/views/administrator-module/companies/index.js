@@ -1,12 +1,15 @@
-import React, {  } from 'react'
+import React, { useEffect, useCallback, useMemo } from 'react'
 import { AdaptableCard } from 'components/shared'
-import AdministratorTable from "../components/AdminModule";
+import AdminModule from "../components/AdminModule";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCompanies, setTableData } from './store/dataSlice'
 import { Avatar } from 'components/ui'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import AdminEditDialog from '../components/AdminEditDialog';
+
 injectReducer('companies', reducer)
 
 
@@ -101,66 +104,31 @@ let columns = [
 		Cell: props => <ActionColumn row={props.row.original} />
 	},
 ]
-let data =[ 
-	{
-	  "alias": "Rapido Santa",
-	  "companyId":"RAPIDO-SANTA",
-	  "name":"Rapido Santa SA",
-	  "phone":"+576018901288",
-	  "email":"rapidoSanta@gmail.com",
-	  "city":"Facatativa",
-	  "address":"Carrera 3 # 9 - 35",
-	  "nit":"9393939393"
-	},
-	{
-	  "alias": "Andina",
-	  "companyId":"FLOTA-ANDINA",
-	  "name":"Flota Andina LTDA",
-	  "phone":"+576012685301",
-	  "email":"flotaAndina@gmail.com",
-	  "city":"Facatativa",
-	  "address":"Cl 22a sur #43",
-	  "nit":"1079839393"
-	},
-	{
-	   "alias": "Sabana",
-	   "companyId":"EXPRESO-SABANA",
-	   "name":"Expreso De La Sabana SAS",
-	   "phone":"+576012635301",
-	   "email":"expresoSabana@gmail.com",
-	   "city":"Bogota",
-	   "address":"DIAGONAL 23 69 60 OF 702",
-	   "nit":"100039393993"
-	},
-	{
-	   "alias": "Ayacucho",
-	   "companyId":"FLOTA-AYACUCHO",
-	   "name":"Flota Ayacucho LTDA",
-	   "phone":"+576014203733",
-	   "email":"flotaAyacucho@gmail.com",
-	   "city":"Facatativa",
-	   "address":"Carrera 2 # 15 - 31",
-	   "nit":"9999333999"
-	},
-	{
-	   "alias": "Villetax",
-	   "companyId":"TRANS-VILLETAX",
-	   "name":"Transportes Villetax SA",
-	   "phone":"+576018901288",
-	   "email":"trasportesVilletax@gmail.com",
-	   "city":"Facatativa",
-	   "address":"Carrera 3 # 9 - 35",
-	   "nit":"839984398"
-	}
-  
-  ]
+
   
 const Companies = () => {
+	
+	const dispatch = useDispatch()
+	const data = useSelector((state) => state.companies.data.companiesList)
+	const loading = useSelector((state) => state.companies.data.loading)
+	const filterData = useSelector((state) => state.companies.data.filterData)
+	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.companies.data.tableData)
+	
+	const fetchData = useCallback(() => {
+        dispatch(getCompanies({pageIndex, pageSize, sort, query, filterData}))
+	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
+
+	useEffect(() => {
+		fetchData()
+	}, [fetchData, pageIndex, pageSize, sort, filterData])
+	
+	
+	
 	
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">
-            <AdministratorTable columns={columns} data={data}/>
+            <AdminModule columns={columns} data={data}/>
             </AdaptableCard>
         </>
     )

@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const stateSlice = createSlice({
-    name: 'crmCustomers/state',
+    name: 'companies/state',
     initialState: {
         drawerOpen: false,
-        selectedCustomer: {},
+        selectedCompanie: {},
         sortedColumn: () => {},
     },
     reducers: {
-        setSelectedCustomer: (state, action) => {
-            state.selectedCustomer = action.payload
+        setSelectedCompanie: (state, action) => {
+            state.selectedCompanie = action.payload
         },
         setSortedColumn: (state, action) => {
             state.sortedColumn = action.payload
@@ -24,7 +24,7 @@ const stateSlice = createSlice({
 })
 
 export const { 
-    setSelectedCustomer, 
+    setSelectedCompanies, 
     setDrawerOpen, 
     setDrawerClose,
     setSortedColumn
