@@ -1,17 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetCompanies} from 'services/AdministratorService'
+import { apiGetRoutes} from 'services/AdministratorService'
 
-export const getCompanies = createAsyncThunk(
-    'admin/companies',async () => {
-    const response = await apiGetCompanies()
+
+export const getRoutes = createAsyncThunk(
+    'admin/routes',async () => {
+    const response = await apiGetRoutes()
     return response.data
 })
 
 const dataSlice = createSlice({
-    name: 'companies/data',
+    name: 'routes/data',
     initialState: {
         loading: false,
-        companiesList: [],
+        checkpointsList: [],
         tableData: {
             total: 0,
             pageIndex: 1,
@@ -30,20 +31,20 @@ const dataSlice = createSlice({
         setTableData: (state, action) => {
             state.tableData = action.payload
         },
-        setCompaniesList: (state, action) => {
-            state.companiesList = action.payload
+        setRoutesList: (state, action) => {
+            state.routesList = action.payload
         },
         setFilterData: (state, action) => {
             state.filterData = action.payload
         },
     },
     extraReducers: {
-        [getCompanies.fulfilled]: (state, action) => {
-            state.companiesList = action.payload
+        [getRoutes.fulfilled]: (state, action) => {
+            state.routesList = action.payload
             state.tableData.total = action.payload.total
             state.loading = false
         },
-        [getCompanies.pending]: (state) => {
+        [getRoutes.pending]: (state) => {
             state.loading = true
         },
     }
@@ -51,7 +52,7 @@ const dataSlice = createSlice({
 
 export const { 
     setTableData,
-    setCompaniesList,
+    setRoutesList,
     setFilterData
 } = dataSlice.actions
 

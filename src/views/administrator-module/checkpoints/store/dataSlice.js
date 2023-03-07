@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetCompanies} from 'services/AdministratorService'
+import { apiGetCheckpoints} from 'services/AdministratorService'
 
-export const getCompanies = createAsyncThunk(
-    'admin/companies',async () => {
-    const response = await apiGetCompanies()
+export const getCheckpoints = createAsyncThunk(
+    'admin/checkpoints',async () => {
+    const response = await apiGetCheckpoints()
     return response.data
 })
 
 const dataSlice = createSlice({
-    name: 'companies/data',
+    name: 'checkpoints/data',
     initialState: {
         loading: false,
-        companiesList: [],
+        checkpointsList: [],
         tableData: {
             total: 0,
             pageIndex: 1,
@@ -30,20 +30,20 @@ const dataSlice = createSlice({
         setTableData: (state, action) => {
             state.tableData = action.payload
         },
-        setCompaniesList: (state, action) => {
-            state.companiesList = action.payload
+        setCheckpointsList: (state, action) => {
+            state.checkpointsList = action.payload
         },
         setFilterData: (state, action) => {
             state.filterData = action.payload
         },
     },
     extraReducers: {
-        [getCompanies.fulfilled]: (state, action) => {
-            state.companiesList = action.payload
+        [getCheckpoints.fulfilled]: (state, action) => {
+            state.checkpointsList = action.payload
             state.tableData.total = action.payload.total
             state.loading = false
         },
-        [getCompanies.pending]: (state) => {
+        [getCheckpoints.pending]: (state) => {
             state.loading = true
         },
     }
@@ -51,7 +51,7 @@ const dataSlice = createSlice({
 
 export const { 
     setTableData,
-    setCompaniesList,
+    setCheckpointsList,
     setFilterData
 } = dataSlice.actions
 

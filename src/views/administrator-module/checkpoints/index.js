@@ -1,22 +1,21 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useMemo } from 'react'
 import { AdaptableCard } from 'components/shared'
 import AdminModule from "../components/AdminModule";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCompanies } from './store/dataSlice'
+import { getCheckpoints, setTableData } from './store/dataSlice'
 import { Avatar } from 'components/ui'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import AdminEditDialog from '../components/AdminEditDialog';
 
-
-injectReducer('companies', reducer)
-
-
+injectReducer('checkpoints', reducer)
 
 const ActionColumn = ({row}) => {
 	
 	const { textTheme } = useThemeClass()
+	
 	const dispatch = useDispatch()
 
 	const onEdit = () => {
@@ -52,49 +51,46 @@ const NameColumn = ({row}) => {
 	)
 }
 
-let columns = [
-	{
-		Header: 'alias',
-		accessor: 'alias',
+
+const columns = [
+    	{
+		Header: 'Name',
+		accessor: 'name',
 		sortable: true,
 		Cell: props => {
 			const row = props.row.original
 			return <NameColumn row={row} />
 		},
 	},
+
 	{
-		Header: 'ID',
-		accessor: 'companyId',
+		Header: 'CheckpointId',
+		accessor: 'checkpointId',
 		// sortable: true,
-	},
-	{
-		Header: 'Name',
-		accessor: 'name',
-		// sortable: true,
-	},
-	{
-		Header: 'Phone',
-		accessor:'phone',
-		// soportable: true,
-	},
-	{
-		Header: 'Email',
-		accessor:'email',
-		// soportable: true,
 	},
 	{
 		Header: 'City',
-		accessor:'city',
+		accessor: 'city',
+		// sortable: true,
+	},
+	{
+		Header: 'Latitude',
+		accessor:'latitude',
 		// soportable: true,
 	},
 	{
-		Header: 'Address',
-		accessor:'address',
+		Header: 'Longitude',
+		accessor:'longitude',
 		// soportable: true,
 	},
 	{
-		Header: 'Nit',
-		accessor:'nit',
+		Header: 'Geohash',
+		accessor:'geohash',
+		// soportable: true,
+	},
+		{
+		Header: 'Description',
+		accessor:'description',
 		// soportable: true,
 	},
 		{
@@ -103,36 +99,41 @@ let columns = [
 		accessor: (row) => row,
 		Cell: props => <ActionColumn row={props.row.original} />
 	},
+
 ]
 
-  
-const Companies = () => {
-	
-	const dispatch = useDispatch()
-	const data = useSelector((state) => state.companies.data.companiesList)
-	
-	const filterData = useSelector((state) => state.companies.data.filterData)
-	const { pageIndex, pageSize, sort, query } = useSelector((state) => 
-	state.companies.data.tableData)
+
+
+
+const Checkpoints = () => {
+    
+    const dispatch = useDispatch()
+	const data = useSelector((state) => state.checkpoints.data.checkpointsList)
+	const loading = useSelector((state) => state.checkpoints.data.loading)
+	const filterData = useSelector((state) => state.checkpoints.data.filterData)
+	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.checkpoints.data.tableData)
 	
 	const fetchData = useCallback(() => {
-        dispatch(getCompanies({pageIndex, pageSize, sort, query, filterData}))
+        dispatch(getCheckpoints({pageIndex, pageSize, sort, query, filterData}))
 	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
 
 	useEffect(() => {
 		fetchData()
 	}, [fetchData, pageIndex, pageSize, sort, filterData])
-	
-	
-	
-	
+    
+    
+    
+    
+    
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">
             <AdminModule columns={columns} data={data}/>
             </AdaptableCard>
+            
+            
         </>
     )
     }
 
-export default Companies
+export default Checkpoints

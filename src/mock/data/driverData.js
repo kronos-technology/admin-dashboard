@@ -172,7 +172,6 @@ export const driverList = [
         "phone":"+573108512747"
      }
 ]
-
 export const driverData = {
     
     
@@ -292,7 +291,6 @@ export const driverData = {
         total: 1223
     }
 }
-
 export const eventsData = [
     { 
         id: '0',
@@ -366,7 +364,6 @@ export const eventsData = [
         eventColor: 'emerald'
     }
 ]
-
 export const mailData = [
     {
         id: 1,

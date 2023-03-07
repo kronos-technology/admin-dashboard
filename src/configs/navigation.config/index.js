@@ -82,10 +82,10 @@ const navigationConfig = [
 				subMenu: []
 			},
 				{
-				key: 'checkpoint',
-				path: '/administrator/checkpoint',
-				title: 'Checkpoint',
-				translateKey: 'Checkpoint',
+				key: 'checkpoints',
+				path: '/administrator/checkpoints',
+				title: 'Checkpoints',
+				translateKey: 'Checkpoints',
 				icon: 'checkpoint',
 				type: NAV_ITEM_TYPE_ITEM,
 				authority: [],

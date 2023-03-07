@@ -1,3 +1,7 @@
 export { default as authFakeApi } from './authFakeApi'
 export { default as driversFakeApi } from './driversFakeApi'
 export { default as companiesFakeApi } from './companiesFakeApi'
+export { default as checkpointsFakeApi } from './checkpointsFakeApi'
+export { default as routesFakeApi } from './routesFakeApi' 
+export { default as ticketsFakeApi } from './ticketsFakeApi'
+export { default as vehiclesFakeApi } from './vehiclesFakeApi'

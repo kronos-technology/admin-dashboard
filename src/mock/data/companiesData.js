@@ -55,7 +55,6 @@ export const companiesList = [{
         "address": "Cl 22a sur #43",
         "nit": ""
     }]
-
 export const companiesData = {
     
     
@@ -175,7 +174,6 @@ export const companiesData = {
         total: 1223
     }
 }
-
 export const eventsData = [
     { 
         id: '0',
@@ -249,10 +247,6 @@ export const eventsData = [
         eventColor: 'emerald'
     }
 ]
-
-
-
-
 export const mailData = [
     {
         id: 1,

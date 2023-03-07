@@ -5,7 +5,14 @@ import { driverList } from './data/driverData'
 import { driversFakeApi } from './fakeApi'
 import { companiesList } from './data/companiesData'
 import { companiesFakeApi } from './fakeApi'
-
+import { checkpointsList } from './data/checkpointsData'
+import { checkpointsFakeApi} from './fakeApi'
+import { routesList } from './data/routesData'
+import { routesFakeApi } from './fakeApi'
+import { ticketsList } from './data/ticketsData'
+import { ticketsFakeApi } from './fakeApi'
+import { vehiclesList } from './data/vehiclesData'
+import { vehiclesFakeApi } from './fakeApi'  
 
 
 const { apiPrefix } = appConfig
@@ -16,7 +23,12 @@ export default function mockServer({ environment = 'test' }) {
         seeds(server) {
 			server.db.loadData({
 		        driverList,
-		        companiesList
+		        companiesList,
+		        checkpointsList,
+		        routesList,
+		        ticketsList,
+		        vehiclesList
+		        
 			})
 		},
         routes() {
@@ -31,6 +43,12 @@ export default function mockServer({ environment = 'test' }) {
             
             driversFakeApi(this, apiPrefix)
             companiesFakeApi(this, apiPrefix)
+            checkpointsFakeApi(this, apiPrefix)
+            routesFakeApi(this, apiPrefix)
+            ticketsFakeApi(this, apiPrefix)
+            vehiclesFakeApi(this, apiPrefix)
+            
+            
         },
     })
 }

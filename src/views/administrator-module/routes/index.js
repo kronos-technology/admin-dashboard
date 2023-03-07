@@ -1,13 +1,16 @@
-import React, {  } from 'react'
+import React, { useEffect, useCallback, useMemo } from 'react'
 import { AdaptableCard } from 'components/shared'
-import AdministratorTable from "../components/AdminModule";
+import AdminModule from "../components/AdminModule";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getRoutes} from './store/dataSlice' 
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
-injectReducer('crmCustomers', reducer)
+
+
+injectReducer('routes', reducer)
 
 const ActionColumn = ({row}) => {
 	
@@ -48,6 +51,15 @@ const NameColumn = ({row}) => {
 }
 
 const columns = [
+	   	{
+		Header: 'Name',
+		accessor: 'name',
+		sortable: true,
+		Cell: props => {
+			const row = props.row.original
+			return <NameColumn row={row} />
+		},
+	},	
 
 	{
 		Header: 'ID',
@@ -77,45 +89,38 @@ const columns = [
 	},
 ]
 
-const data = [
-    {
-        "routeId": "FACATA-MADRID-BOGOTA-13",
-        "origin": "FACATATIVA",
-        "destination": "BOGOTA",
-        "geojson": "s3://locationtoroute1.geojson"
-    },
-    {
-        "routeId": "FACATA-VTEMAD-BOGOTA-13",
-        "origin": "FACATATIVA",
-        "destination": "BOGOTA",
-        "geojson": "s3://locationtoroute2.geojson"
-    },
-    {
-        "routeId": "FACATA-BOGOTA-80",
-        "origin": "FACATATIVA",
-        "destination": "BOGOTA",
-        "geojson": "s3://locationtoroute3.geojson"
-    },
-    {
-        "routeId": "FACATA-BOJACA",
-        "origin": "FACATATIVA",
-        "destination": "BOJACA",
-        "geojson": "s3://locationtoroute4.geojson"
-    },
-    {
-        "routeId": "BOJACA-BOGOTA",
-        "origin": "BOJACA",
-        "destination": "BOGOTA",
-        "geojson": "s3://locationtoroute5.geojson"
-    }
-]
 
 
 const Routes = () => {
+	
+	const dispatch = useDispatch()
+	const data = useSelector((state) => state.routes.data.routesList)
+	const loading = useSelector((state) => state.routes.data.loading)
+	const filterData = useSelector((state) => state.routes.data.filterData)
+	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.routes.data.tableData)
+	
+	const fetchData = useCallback(() => {
+        dispatch(getRoutes({pageIndex, pageSize, sort, query, filterData}))
+	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
+
+	useEffect(() => {
+		fetchData()
+	}, [fetchData, pageIndex, pageSize, sort, filterData])
+    
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">
-            <AdministratorTable columns={columns} data={data}/>
+            <AdminModule columns={columns} data={data}/>
             </AdaptableCard>
         </>
     )

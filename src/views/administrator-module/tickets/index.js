@@ -1,13 +1,15 @@
-import React, {  } from 'react'
+import React, { useEffect, useCallback, useMemo  } from 'react'
 import { AdaptableCard } from 'components/shared'
-import AdministratorTable from "../components/AdminModule";
+import AdminModule from "../components/AdminModule";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTickets } from './store/dataSlice'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
-injectReducer('crmCustomers', reducer)
+
+injectReducer('tickets', reducer)
 
 const ActionColumn = ({row}) => {
     
@@ -48,20 +50,29 @@ const NameColumn = ({row}) => {
 }
 
 const columns = [
+       	{
+		Header: 'Name',
+		accessor: 'name',
+		sortable: true,
+		Cell: props => {
+			const row = props.row.original
+			return <NameColumn row={row} />
+		},
+	},
 
 	{
-		Header: 'Checkpoint',
+		Header: 'CheckpointId',
 		accessor: 'checkpointId',
 		// sortable: true,
 	},
 	{
-		Header: 'Route',
-		accessor: 'routeId',
+		Header: 'CompanyId',
+		accessor: 'companyId',
 		// sortable: true,
 	},
 	{
-		Header: 'DateTime',
-		accessor:'timestamp',
+		Header: 'DriverId',
+		accessor:'driverId',
 		// soportable: true,
 	},
 	{
@@ -70,8 +81,18 @@ const columns = [
 		// soportable: true,
 	},
 	{
-		Header: 'Driver',
-		accessor:'driverId',
+		Header: 'RouteId',
+		accessor:'routeId',
+		// soportable: true,
+	},
+		{
+		Header: 'Timestamp',
+		accessor:'timestamp',
+		// soportable: true,
+	},
+			{
+		Header: 'VehicleNumber',
+		accessor:'vehicleNumber',
 		// soportable: true,
 	},
 			{
@@ -82,85 +103,34 @@ const columns = [
 	},
 ]
 
-const data = [
-	{
-        "checkpointId": "FACA-ABOGADOS",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:00:00.123-0500",
-        "plate": "ZIY246",
-        "driverId": "1070959307"
-    },
-    {
-        "checkpointId": "FACA-ABOGADOS",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:06:28.313-0500",
-        "plate": "BAM577",
-        "driverId": "1070947951"
-    },
-    {
-        "checkpointId": "FACA-ABOGADOS",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:15:00-0500",
-        "plate": "RPG333",
-        "driverId": "1070959307"
-    },
-    {
-        "checkpointId": "FACA-ABOGADOS",
-        "routeId": "FACATA-BOGOTA-80",
-        "timestamp": "2022-06-19T10:10:35-0500",
-        "plate": "ABC132",
-        "driverId": "1070947951"
-    },
-    {
-        "checkpointId": "FACA-ABOGADOS",
-        "routeId": "FACATA-BOGOTA-80",
-        "timestamp": "2022-05-19T10:23:35-0500",
-        "plate": "ZIY246",
-        "driverId": "1070947951"
-    },
-    {
-        "checkpointId": "FACA-CARTAGENITA",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:15:00-0500",
-        "plate": "ZIY246",
-        "driverId": "1070959307"
-    },
-    {
-        "checkpointId": "FACA-CARTAGENITA",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:23:02-0500",
-        "plate": "BAM577",
-        "driverId": "1070947951"
-    },
-    {
-        "checkpointId": "BJCA-CORSO",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:19:00-0500",
-        "plate": "ZIY246",
-        "driverId": "1070959307"
-    },
-    {
-        "checkpointId": "BJCA-CORSO",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:26:12-0500",
-        "plate": "BAM577",
-        "driverId": "1070947951"
-    },
-    {
-        "checkpointId": "MADR-PROSPERIDAD",
-        "routeId": "FACATA-BOGOTA-13",
-        "timestamp": "2022-05-18T12:25:33-0500",
-        "plate": "ZIY246",
-        "driverId": "1070959307"
-    }
-]
+
 
 
 const Tickets = () => {
+    
+    const dispatch = useDispatch()
+	const data = useSelector((state) => state.tickets.data.ticketsList)
+	const loading = useSelector((state) => state.tickets.data.loading)
+	const filterData = useSelector((state) => state.tickets.data.filterData)
+	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.tickets.data.tableData)
+	
+	const fetchData = useCallback(() => {
+        dispatch(getTickets({pageIndex, pageSize, sort, query, filterData}))
+	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
+
+	useEffect(() => {
+		fetchData()
+	}, [fetchData, pageIndex, pageSize, sort, filterData])
+    
+    
+    
+    
+    
+    
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">
-            <AdministratorTable columns={columns} data={data}/>
+            <AdminModule columns={columns} data={data}/>
             </AdaptableCard>
         </>
     )

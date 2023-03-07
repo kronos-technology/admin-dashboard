@@ -51,8 +51,8 @@ export const protectedRoutes = [
     },
         {
         key: 'adminCheckpoint',
-        path: '/administrator/checkpoint',
-        component: React.lazy(() => import('views/administrator-module/checkpoint')),
+        path: '/administrator/checkpoints',
+        component: React.lazy(() => import('views/administrator-module/checkpoints')),
         authority: [],
     },
 

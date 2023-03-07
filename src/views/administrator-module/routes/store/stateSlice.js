@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const stateSlice = createSlice({
-    name: 'adminRoutes/state',
+    name: 'Routes/state',
     initialState: {
         drawerOpen: false,
-        selectedCustomer: {},
+        selectedRoutes: {},
         sortedColumn: () => {},
     },
     reducers: {
-        setSelectedCustomer: (state, action) => {
-            state.selectedCustomer = action.payload
+        setSelectedRoutes: (state, action) => {
+            state.selectedRoutes = action.payload
         },
         setSortedColumn: (state, action) => {
             state.sortedColumn = action.payload
@@ -24,7 +24,7 @@ const stateSlice = createSlice({
 })
 
 export const { 
-    setSelectedCustomer, 
+    setSelectedRoutes, 
     setDrawerOpen, 
     setDrawerClose,
     setSortedColumn
