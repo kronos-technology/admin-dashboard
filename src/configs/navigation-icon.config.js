@@ -12,7 +12,8 @@ import {
 
 import { TiTicket } from "react-icons/ti";
 import {  TbRoute } from "react-icons/tb";
-import {RiBusFill} from "react-icons/ri";
+import { RiBusFill } from "react-icons/ri";
+import { CgRadioChecked } from "react-icons/cg"
 
 
 
@@ -26,7 +27,8 @@ const navigationIcon = {
     tickets: <TiTicket/>,
     routes: <TbRoute/>,
     vehicles:<RiBusFill/>,
-    companies:<HiOutlineOfficeBuilding/>
+    companies:<HiOutlineOfficeBuilding/>,
+    checkpoint:<CgRadioChecked/>,
 }
 
 export default navigationIcon
