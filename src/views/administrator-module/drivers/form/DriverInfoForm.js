@@ -9,7 +9,7 @@ import {
 import { HiUserCircle, HiMail, HiLocationMarker, HiPhone, HiCake, HiOutlineUser } from 'react-icons/hi'
 import { Field } from 'formik'
 
-const PersonalInfoForm = props => {
+const DriverInfoForm = props => {
 
 	const { touched, errors } = props
 
@@ -141,4 +141,4 @@ const PersonalInfoForm = props => {
 	)
 }
 
-export default PersonalInfoForm
+export default DriverInfoForm

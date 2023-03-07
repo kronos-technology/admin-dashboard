@@ -4,8 +4,8 @@ import { Form, Formik } from 'formik'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import * as Yup from 'yup'
-import PersonalInfoForm from './PersonalInfoForm'
-import SocialLinkForm from './SocialLinkForm'
+import PersonalInfoForm from './DriverFormItems'
+import AdminEditForm from "../../components/AdminEditForm"; 
 
 dayjs.extend(customParseFormat)
 
@@ -30,23 +30,23 @@ const { TabNav, TabList, TabContent } = Tabs
 
 const DriverForm = forwardRef((props, ref) => {
 
-	const { customer, onFormSubmit } = props
+	const { driver, onFormSubmit } = props
 
 	return (
 		<Formik
 			innerRef={ref}
 			initialValues={{ 
-				name: customer.name || '',
-				email: customer.email || '',
-				img: customer.img || '',
-				location: customer?.personalInfo?.location || '',
-				title: customer?.personalInfo?.title || '',
-				phoneNumber:customer?.personalInfo?.phoneNumber || '',
-				birthday: customer?.personalInfo?.birthday && dayjs(customer.personalInfo.birthday,'DD/MM/YYYY').toDate(),
-				facebook: customer?.personalInfo?.facebook || '',
-				twitter: customer?.personalInfo?.twitter || '',
-				pinterest: customer?.personalInfo?.pinterest || '',
-				linkedIn: customer?.personalInfo?.linkedIn || '',
+				name: driver.name || '',
+				email: driver.email || '',
+				img: driver.img || '',
+				location: driver?.personalInfo?.location || '',
+				title: driver?.personalInfo?.title || '',
+				phoneNumber:driver?.personalInfo?.phoneNumber || '',
+				birthday: driver?.personalInfo?.birthday && dayjs(driver.personalInfo.birthday,'DD/MM/YYYY').toDate(),
+				facebook: driver?.personalInfo?.facebook || '',
+				twitter: driver?.personalInfo?.twitter || '',
+				pinterest: driver?.personalInfo?.pinterest || '',
+				linkedIn: driver?.personalInfo?.linkedIn || '',
 			}}
 			validationSchema={validationSchema}
 			onSubmit={(values, { setSubmitting }) => {
@@ -57,17 +57,14 @@ const DriverForm = forwardRef((props, ref) => {
 			{({touched, errors, resetForm}) => (
 				<Form>
 					<FormContainer>
-						<Tabs defaultValue="personalInfo">
+							<DriverInfoForm touched={touched} errors={errors} />
+						<Tabs defaultValue="driverInfo">
 							<TabList>
-								<TabNav value="personalInfo">Personal Info</TabNav>
-								<TabNav value="social">Social</TabNav>
+								<TabNav value="driverInfo">Driver Information</TabNav>
 							</TabList>
 							<div className="p-6">
-								<TabContent value="personalInfo">
-									<PersonalInfoForm touched={touched} errors={errors} />
-								</TabContent>
-								<TabContent value="social">
-									<SocialLinkForm touched={touched} errors={errors} />
+								<TabContent value="driverInfo">
+									<DriverInfoForm touched={touched} errors={errors} />
 								</TabContent>
 							</div>
 						</Tabs>

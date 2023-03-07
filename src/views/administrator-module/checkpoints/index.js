@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCheckpoints, setTableData } from './store/dataSlice'
 import { Avatar } from 'components/ui'
 import { Link } from 'react-router-dom'
-import AdminEditDialog from '../components/AdminEditDialog';
 
 injectReducer('checkpoints', reducer)
 
