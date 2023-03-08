@@ -31,7 +31,7 @@ const navigationConfig = [
 		subMenu: [
 			{
 				key: 'adminCompanies',
-				path: `${APP_PREFIX_PATH}/administrator/companies`,
+				path: `${APP_PREFIX_PATH}/admin/companies`,
 				title: 'Companies',
 				translateKey: 'Companies',
 				icon: 'companies',
@@ -41,7 +41,7 @@ const navigationConfig = [
 			},
 			{
 				key: 'adminDrivers',
-				path: `${APP_PREFIX_PATH}/administrator/drivers`,
+				path: `${APP_PREFIX_PATH}/admin/drivers`,
 				title: 'Drivers',
 				translateKey: 'Drivers',
 				icon: 'driver',
@@ -52,7 +52,7 @@ const navigationConfig = [
 		
 			{
 				key: 'adminRoutes',
-				path: `${APP_PREFIX_PATH}/administrator/routes`,
+				path: `${APP_PREFIX_PATH}/admin/routes`,
 				title: 'Routes',
 				translateKey: 'Routes',
 				icon: 'routes',
@@ -63,7 +63,7 @@ const navigationConfig = [
 			
 			{
 				key: 'adminTickets',
-				path: `${APP_PREFIX_PATH}/administrator/tickets`,
+				path: `${APP_PREFIX_PATH}/admin/tickets`,
 				title: 'Tickets',
 				translateKey: 'Tickets',
 				icon: 'tickets',
@@ -73,7 +73,7 @@ const navigationConfig = [
 			},
 			{
 				key: 'adminVehicles',
-				path: `${APP_PREFIX_PATH}/administrator/vehicles`,
+				path: `${APP_PREFIX_PATH}/admin/vehicles`,
 				title: 'Vehicles',
 				translateKey: 'Vehicles',
 				icon: 'vehicles',
@@ -83,7 +83,7 @@ const navigationConfig = [
 			},
 				{
 				key: 'checkpoints',
-				path: `${APP_PREFIX_PATH}/administrator/checkpoints`,
+				path: `${APP_PREFIX_PATH}/admin/checkpoints`,
 				title: 'Checkpoints',
 				translateKey: 'Checkpoints',
 				icon: 'checkpoint',
