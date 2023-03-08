@@ -4,10 +4,10 @@ import AdminTableSearch from './AdminTableSearch'
 import AdminTableFilter from './AdminTableFilter'
 import { useDispatch, useSelector } from 'react-redux'
 import cloneDeep from 'lodash/cloneDeep'
-
-const AdminTableTools = (tableData) => {
-
-
+import { Link } from 'react-router-dom'
+import { HiDownload, HiPlusCircle } from 'react-icons/hi'
+const AdminTableTools = (props) => {
+	const {entity, tableData} =  props
 	const inputRef = useRef()
 
 	//const tableData = useSelector((state) => state.crmCustomers.data.tableData)
@@ -26,20 +26,27 @@ const AdminTableTools = (tableData) => {
 	}
 
 
+	const addItemRoute = `/administrator/${entity}-new`
 
 	return (
 		<div className="md:flex items-center justify-between">
 			<div className="md:flex items-center gap-4">
 				<AdminTableSearch ref={inputRef} onInputChange={handleInputChange} />
-				<AdminTableFilter />
 			</div>
 			<div className="mb-4">
+			<Link 
+				className="block lg:inline-block md:mb-0 mb-4"
+			 	to={addItemRoute}
+			>
 				<Button
-					size="sm"
-					onClick={()=>{}}
+					block
+					variant="solid"
+					size="sm" 
+					icon={<HiPlusCircle />}
 				>
-					Clear All
+					Add {entity.charAt(0).toUpperCase() + entity.slice(1)}
 				</Button>
+			</Link>
 			</div>
 		</div>
 	)

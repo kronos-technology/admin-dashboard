@@ -27,7 +27,7 @@ export const protectedRoutes = [
     {
         key: 'adminDrivers',
         path: '/administrator/drivers',
-        component: React.lazy(() => import('views/administrator-module/drivers')),
+        component: React.lazy(() => import('views/administrator-module/DriverList')),
         authority: [],
     },
 

@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const stateSlice = createSlice({
     name: 'drivers/state',
     initialState: {
-        drawerOpen: false,
-        selectedDriver: {},
+        deleteConfirmation: false,
+        selectedDriver: '',
         sortedColumn: () => {},
     },
     reducers: {
@@ -14,20 +14,16 @@ const stateSlice = createSlice({
         setSortedColumn: (state, action) => {
             state.sortedColumn = action.payload
         },
-        setDrawerOpen: (state) => {
-            state.drawerOpen = true
-        },
-        setDrawerClose: (state) => {
-            state.drawerOpen = false
+        toggleDeleteConfirmation: (state, action) => {
+            state.deleteConfirmation = action.payload
         },
     },
 })
 
 export const { 
     setSelectedDriver, 
-    setDrawerOpen, 
-    setDrawerClose,
-    setSortedColumn
+    setSortedColumn,
+    toggleDeleteConfirmation,
 } = stateSlice.actions
 
 export default stateSlice.reducer

@@ -23,7 +23,7 @@ const navigationConfig = [
     {
 		key: 'groupMenu',
 		path: '',
-		title: 'ADMINISTRATOR',
+		title: 'Administrator',
 		translateKey: '',
 		icon: '',
 		type: NAV_ITEM_TYPE_TITLE,

@@ -38,7 +38,6 @@ const dataSlice = createSlice({
     },
     extraReducers: {
         [getDrivers.fulfilled]: (state, action) => {
-            
             state.driversList = action.payload
             state.tableData.total = action.payload.total
             state.loading = false

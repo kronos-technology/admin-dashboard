@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 import { AdaptableCard } from 'components/shared'
-import AdminModule from "../components/AdminModule";
+import AdminTable from "../components/AdminTable";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
@@ -129,7 +129,7 @@ const Companies = () => {
     return (
         <>
             <AdaptableCard className="h-full" bodyClass="h-full">
-            <AdminModule columns={columns} data={data}/>
+            <AdminTable columns={columns} data={data}/>
             </AdaptableCard>
         </>
     )
