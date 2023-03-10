@@ -1,33 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const stateSlice = createSlice({
-    name: 'checkpoints/state',
-    initialState: {
-        drawerOpen: false,
-        selectedCheckpoints: {},
-        sortedColumn: () => {},
+  name: 'checkpoints/state',
+  initialState: {
+    drawerOpen: false,
+    selectedCheckpoints: {},
+    sortedColumn: () => {}
+  },
+  reducers: {
+    setSelectedCheckpoints: (state, action) => {
+      state.selectedCheckpoints = action.payload;
     },
-    reducers: {
-        setSelectedCheckpoints: (state, action) => {
-            state.selectedCheckpoints = action.payload
-        },
-        setSortedColumn: (state, action) => {
-            state.sortedColumn = action.payload
-        },
-        setDrawerOpen: (state) => {
-            state.drawerOpen = true
-        },
-        setDrawerClose: (state) => {
-            state.drawerOpen = false
-        },
+    setSortedColumn: (state, action) => {
+      state.sortedColumn = action.payload;
     },
-})
+    toggleDeleteConfirmation: (state, action) => {
+      state.deleteConfirmation = action.payload;
+    }
+  }
+});
 
-export const { 
-    setSelectedCheckpoints, 
-    setDrawerOpen, 
-    setDrawerClose,
-    setSortedColumn
-} = stateSlice.actions
+export const { setSelectedCheckpoints, setSortedColumn, toggleDeleteConfirmation } =
+  stateSlice.actions;
 
-export default stateSlice.reducer
+export default stateSlice.reducer;

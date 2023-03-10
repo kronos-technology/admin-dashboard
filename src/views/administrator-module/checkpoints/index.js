@@ -1,138 +1,162 @@
-import React, { useEffect, useCallback, useMemo } from 'react'
-import { AdaptableCard } from 'components/shared'
-import AdminTable from "../components/AdminTable";
-import { injectReducer } from 'store/index'
-import reducer from './store'
-import useThemeClass from 'utils/hooks/useThemeClass'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCheckpoints, setTableData } from './store/dataSlice'
-import { Avatar } from 'components/ui'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useCallback, useMemo } from 'react';
+import { AdaptableCard } from 'components/shared';
+import AdminTable from '../components/AdminTable';
+import { injectReducer } from 'store/index';
+import reducer from './store';
+import useThemeClass from 'utils/hooks/useThemeClass';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCheckpoints, setTableData } from './store/dataSlice';
+import {
+  setSelectedCheckpoints,
+  toggleDeleteConfirmation,
+  setSortedColumn
+} from './store/stateSlice';
 
-injectReducer('checkpoints', reducer)
+import { Avatar } from 'components/ui';
+import { Link } from 'react-router-dom';
+import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
+import cloneDeep from 'lodash/cloneDeep';
 
-const ActionColumn = ({row}) => {
-	
-	const { textTheme } = useThemeClass()
-	
-	const dispatch = useDispatch()
+injectReducer('checkpoints', reducer);
 
-	const onEdit = () => {
-		// eslint-disable-next-line no-undef
-		dispatch(setDrawerOpen())
-		// dispatch(setSelectedCustomer(row))
-	}
+const ActionColumn = ({ row }) => {
+  const dispatch = useDispatch();
+  const { textTheme } = useThemeClass();
+  const navigate = useNavigate();
 
-	return (
-		<div 
-			className={`${textTheme} cursor-pointer select-none font-semibold`}
-			onClick={onEdit}
-		>
-			Edit
-		</div>
-	)
-}
+  const onEdit = () => {
+    navigate(`/administrator/checkpoint-edit/${row.id}`);
+  };
 
-const NameColumn = ({row}) => {
+  const onDelete = () => {
+    dispatch(toggleDeleteConfirmation(true));
+    dispatch(setSelectedDriver(row.id));
+  };
 
-	const { textTheme } = useThemeClass()
+  return (
+    <div className="flex justify-end text-lg">
+      <span className={`cursor-pointer p-2 hover:${textTheme}`} onClick={onEdit}>
+        <HiOutlinePencil />
+      </span>
+      <span className="cursor-pointer p-2 hover:text-red-500" onClick={onDelete}>
+        <HiOutlineTrash />
+      </span>
+    </div>
+  );
+};
 
-	return (
-		<div className="flex items-center">
-			<Avatar size={28} shape="circle" src={row.img} />
-			<Link 
-				className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold`}
-				to={`/app/crm/customer-details?id=${row.id}`}
-			>
-				{row.name}
-			</Link>
-		</div>
-	)
-}
-
-
-const columns = [
-    	{
-		Header: 'Name',
-		accessor: 'name',
-		sortable: true,
-		Cell: props => {
-			const row = props.row.original
-			return <NameColumn row={row} />
-		},
-	},
-
-	{
-		Header: 'CheckpointId',
-		accessor: 'checkpointId',
-		// sortable: true,
-	},
-	{
-		Header: 'City',
-		accessor: 'city',
-		// sortable: true,
-	},
-	{
-		Header: 'Latitude',
-		accessor:'latitude',
-		// soportable: true,
-	},
-	{
-		Header: 'Longitude',
-		accessor:'longitude',
-		// soportable: true,
-	},
-	{
-		Header: 'Geohash',
-		accessor:'geohash',
-		// soportable: true,
-	},
-		{
-		Header: 'Description',
-		accessor:'description',
-		// soportable: true,
-	},
-		{
-		Header: '',
-		id: 'action',
-		accessor: (row) => row,
-		Cell: props => <ActionColumn row={props.row.original} />
-	},
-
-]
-
-
-
+const NameColumn = ({ row }) => {
+  const { textTheme } = useThemeClass();
+  const avatar = row.img ? <Avatar src={row.img} /> : <Avatar icon={<FiUser />} />;
+  return (
+    <div className="flex items-center">
+      {avatar}
+      <span className={`ml-2 rtl:mr-2 font-semibold`}>{row.name}</span>
+    </div>
+  );
+};
 
 const Checkpoints = () => {
-    
-    const dispatch = useDispatch()
-	const data = useSelector((state) => state.checkpoints.data.checkpointsList)
-	const loading = useSelector((state) => state.checkpoints.data.loading)
-	const filterData = useSelector((state) => state.checkpoints.data.filterData)
-	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.checkpoints.data.tableData)
-	
-	const fetchData = useCallback(() => {
-        dispatch(getCheckpoints({pageIndex, pageSize, sort, query, filterData}))
-	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		fetchData()
-	}, [fetchData, pageIndex, pageSize, sort, filterData])
-    
-    
-    
-    
-    
-    return (
-        <>
-            <AdaptableCard className="h-full" bodyClass="h-full">
-            <AdminTable columns={columns} data={data}/>
-            </AdaptableCard>
-            
-            
-        </>
-    )
+  const { pageIndex, pageSize, sort, query, total } = useSelector(
+    (state) => state.checkpoints.data.tableData
+  );
+
+  const loading = useSelector((state) => state.checkpoints.data.loading);
+  const data = useSelector((state) => state.checkpoints.data.checkpointsList);
+
+  useEffect(() => {
+    fetchData();
+  }, [pageIndex, pageSize, sort]);
+
+  const tableData = useMemo(
+    () => ({ pageIndex, pageSize, sort, query, total }),
+    [pageIndex, pageSize, sort, query, total]
+  );
+
+  const fetchData = () => {
+    dispatch(getCheckpoints({ pageIndex, pageSize, sort, query }));
+  };
+
+  const columns = useMemo(() => [
+    {
+      Header: 'Name',
+      accessor: 'name',
+      sortable: true,
+      Cell: (props) => {
+        const row = props.row.original;
+        return <NameColumn row={row} />;
+      }
+    },
+    {
+      Header: 'Last Name',
+      accessor: 'lastName',
+      sortable: true
+    },
+
+    {
+      Header: 'Company',
+      accessor: 'companyId',
+      sortable: true
+    },
+    {
+      Header: 'Birthdate',
+      accessor: 'birthdate'
+    },
+    {
+      Header: 'Phone',
+      accessor: 'phone'
+    },
+
+    {
+      Header: '',
+      id: 'action',
+      accessor: (row) => row,
+      Cell: (props) => <ActionColumn row={props.row.original} />
     }
+  ]);
 
-export default Checkpoints
+  const onPaginationChange = (page) => {
+    const newTableData = cloneDeep(tableData);
+    newTableData.pageIndex = page;
+    dispatch(setTableData(newTableData));
+  };
+
+  const onSelectChange = (value) => {
+    const newTableData = cloneDeep(tableData);
+    newTableData.pageSize = Number(value);
+    newTableData.pageIndex = 1;
+    dispatch(setTableData(newTableData));
+  };
+
+  const onSort = (sort, sortingColumn) => {
+    const newTableData = cloneDeep(tableData);
+    newTableData.sort = sort;
+    dispatch(setTableData(newTableData));
+    dispatch(setSortedColumn(sortingColumn));
+  };
+
+  return (
+    <>
+      <AdaptableCard className="h-full" bodyClass="h-full">
+        <AdminTable
+          title="Checkpoints List"
+          entity="checkpoints"
+          columns={columns}
+          data={data}
+          skeletonAvatarColumns={[0]}
+          skeletonAvatarProps={{ className: 'rounded-md' }}
+          loading={loading}
+          pagingData={tableData}
+          onPaginationChange={onPaginationChange}
+          onSelectChange={onSelectChange}
+          onSort={onSort}
+        />
+      </AdaptableCard>
+    </>
+  );
+};
+
+export default Checkpoints;
