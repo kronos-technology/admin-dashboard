@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useMemo } from 'react';
 import { AdaptableCard } from 'components/shared';
 import AdminTable from '../components/AdminTable';
+import AdminTableTools from '../components/AdminTableTools';
 import { injectReducer } from 'store/index';
 import reducer from './store';
 import useThemeClass from 'utils/hooks/useThemeClass';
@@ -62,7 +63,6 @@ const Companies = () => {
     (state) => state.companies.data.tableData
   );
   const loading = useSelector((state) => state.companies.data.loading);
-
   const data = useSelector((state) => state.companies.data.companiesList);
 
   useEffect(() => {
@@ -92,11 +92,11 @@ const Companies = () => {
       sortable: true
     },
 
-    {
-      Header: 'Name',
-      accessor: 'name',
-      sortable: true
-    },
+    // {
+    //   Header: 'Name',
+    //   accessor: 'name',
+    //   sortable: true
+    // },
     {
       Header: 'Phone',
       accessor: 'phone'
