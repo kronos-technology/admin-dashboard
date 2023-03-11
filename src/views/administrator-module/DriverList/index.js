@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom'
 import cloneDeep from 'lodash/cloneDeep'
 
 
-injectReducer('drivers', reducer)
+injectReducer('adminDriverList', reducer)
 
 
 const ActionColumn = ({row}) => {
@@ -26,7 +26,7 @@ const ActionColumn = ({row}) => {
 	const navigate = useNavigate()
 
 	const onEdit = () => {
-		navigate(`/administrator/driver-edit/${row.id}`)
+		navigate(`/admin/driver-edit/${row.id}`)
 	}
 
 	const onDelete = () => {
@@ -60,11 +60,13 @@ const NameColumn = ({row}) => {
 	)
 }
 
-const Drivers = () => {
+const DriverTable = () => {
 	const dispatch = useDispatch()
-	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.drivers.data.tableData)
-	const loading = useSelector((state) => state.drivers.data.loading)
-	const data = useSelector((state) => state.drivers.data.driversList)
+	const { pageIndex, pageSize, sort, query, total } = useSelector(
+		(state) => state.adminDriverList.data.tableData
+	)
+	const loading = useSelector((state) => state.adminDriverList.data.loading)
+	const data = useSelector((state) => state.adminDriverList.data.driverList)
 	
 
 	useEffect(() => {
@@ -141,7 +143,6 @@ const Drivers = () => {
 
     return (
         <>
-            <AdaptableCard className="h-full" bodyClass="h-full">
             <AdminTable 
 				title="Drivers List"
 				entity="driver"
@@ -155,9 +156,8 @@ const Drivers = () => {
 				onSelectChange={onSelectChange}
 				onSort={onSort}
 			/>
-            </AdaptableCard>
         </>
     )
     }
 
-export default Drivers
+export default DriverTable

@@ -7,10 +7,10 @@ export const getDrivers = createAsyncThunk('admin/drivers',async () => {
 })
 
 const dataSlice = createSlice({
-    name: 'drivers/data',
+    name: 'adminDriverList/data',
     initialState: {
         loading: false,
-        driversList: [],
+        driverList: [],
         tableData: {
             total: 0,
             pageIndex: 1,
@@ -29,8 +29,8 @@ const dataSlice = createSlice({
         setTableData: (state, action) => {
             state.tableData = action.payload
         },
-        setDriversList: (state, action) => {
-            state.driversList = action.payload
+        setDriverList: (state, action) => {
+            state.driverList = action.payload
         },
         setFilterData: (state, action) => {
             state.filterData = action.payload
@@ -38,7 +38,7 @@ const dataSlice = createSlice({
     },
     extraReducers: {
         [getDrivers.fulfilled]: (state, action) => {
-            state.driversList = action.payload
+            state.driverList = action.payload
             state.tableData.total = action.payload.total
             state.loading = false
         },
@@ -51,7 +51,7 @@ const dataSlice = createSlice({
 
 export const { 
     setTableData,
-    setDriversLIst,
+    setDriverList,
     setFilterData
 } = dataSlice.actions
 

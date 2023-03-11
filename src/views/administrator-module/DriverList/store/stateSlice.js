@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const stateSlice = createSlice({
-    name: 'drivers/state',
+    name: 'adminDriverList/state',
     initialState: {
         deleteConfirmation: false,
         selectedDriver: '',
