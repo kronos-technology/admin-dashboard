@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const stateSlice = createSlice({
   name: 'checkpoints/state',
   initialState: {
-    drawerOpen: false,
-    selectedCheckpoints: {},
+    deleteConfirmation: false,
+    selectedCheckpoints: '',
     sortedColumn: () => {}
   },
   reducers: {

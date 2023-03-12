@@ -13,6 +13,7 @@ import {
 } from './store/stateSlice';
 
 import { Avatar } from 'components/ui';
+import { FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +32,7 @@ const ActionColumn = ({ row }) => {
 
   const onDelete = () => {
     dispatch(toggleDeleteConfirmation(true));
-    dispatch(setSelectedDriver(row.id));
+    dispatch(setSelectedCheckpoints(row.id));
   };
 
   return (
@@ -91,23 +92,31 @@ const Checkpoints = () => {
       }
     },
     {
-      Header: 'Last Name',
-      accessor: 'lastName',
+      Header: 'CheckpointId',
+      accessor: 'checkpointId',
       sortable: true
     },
 
     {
-      Header: 'Company',
-      accessor: 'companyId',
+      Header: 'City',
+      accessor: 'city',
       sortable: true
     },
     {
-      Header: 'Birthdate',
-      accessor: 'birthdate'
+      Header: 'Latitude',
+      accessor: 'latitude'
     },
     {
-      Header: 'Phone',
-      accessor: 'phone'
+      Header: 'Longitude',
+      accessor: 'longitude'
+    },
+    {
+      Header: 'Geohash',
+      accessor: 'geohash'
+    },
+    {
+      Header: 'Description',
+      accessor: 'description'
     },
 
     {
