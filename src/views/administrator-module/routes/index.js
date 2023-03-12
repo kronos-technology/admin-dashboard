@@ -77,18 +77,13 @@ const Routes = () => {
 
   const columns = useMemo(() => [
     {
-      Header: 'Name',
-      accessor: '',
-      sortable: true,
-      Cell: (props) => {
-        const row = props.row.original;
-        return <NameColumn row={row} />;
-      }
-    },
-    {
       Header: 'RouteId',
       accessor: 'routeId',
       sortable: true
+      // Cell: (props) => {
+      //   const row = props.row.original;
+      //   return <NameColumn row={row} />;
+      // }
     },
 
     {

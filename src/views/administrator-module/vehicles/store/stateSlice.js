@@ -1,33 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const stateSlice = createSlice({
-    name: 'Vehicles/state',
-    initialState: {
-        drawerOpen: false,
-        selectedVehicles: {},
-        sortedColumn: () => {},
+  name: 'Vehicles/state',
+  initialState: {
+    deleteConfirmation: false,
+    selectedVehicles: '',
+    sortedColumn: () => {}
+  },
+  reducers: {
+    setSelectedVehicles: (state, action) => {
+      state.selectedVehicles = action.payload;
     },
-    reducers: {
-        setSelectedVehicles: (state, action) => {
-            state.selectedVehicles = action.payload
-        },
-        setSortedColumn: (state, action) => {
-            state.sortedColumn = action.payload
-        },
-        setDrawerOpen: (state) => {
-            state.drawerOpen = true
-        },
-        setDrawerClose: (state) => {
-            state.drawerOpen = false
-        },
+    setSortedColumn: (state, action) => {
+      state.sortedColumn = action.payload;
     },
-})
+    toggleDeleteConfirmation: (state, action) => {
+      state.deleteConfirmation = action.payload;
+    }
+  }
+});
 
-export const { 
-    setSelectedVehicles, 
-    setDrawerOpen, 
-    setDrawerClose,
-    setSortedColumn
-} = stateSlice.actions
+export const { setSelectedVehicles, setSortedColumn, toggleDeleteConfirmation } =
+  stateSlice.actions;
 
-export default stateSlice.reducer
+export default stateSlice.reducer;

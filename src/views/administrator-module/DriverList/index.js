@@ -46,6 +46,7 @@ const ActionColumn = ({ row }) => {
 const NameColumn = ({ row }) => {
   const { textTheme } = useThemeClass();
   const avatar = row.img ? <Avatar src={row.img} /> : <Avatar icon={<FiUser />} />;
+
   return (
     <div className="flex items-center">
       {avatar}
@@ -56,12 +57,11 @@ const NameColumn = ({ row }) => {
 
 const Drivers = () => {
   const dispatch = useDispatch();
-
+  const data = useSelector((state) => state.drivers.data.driversList);
+  const loading = useSelector((state) => state.drivers.data.loading);
   const { pageIndex, pageSize, sort, query, total } = useSelector(
     (state) => state.drivers.data.tableData
   );
-  const loading = useSelector((state) => state.drivers.data.loading);
-  const data = useSelector((state) => state.drivers.data.driversList);
 
   useEffect(() => {
     fetchData();
