@@ -1,33 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const stateSlice = createSlice({
-    name: 'Tickets/state',
-    initialState: {
-        drawerOpen: false,
-        selectedTickets: {},
-        sortedColumn: () => {},
+  name: 'tickets/state',
+  initialState: {
+    deleteConfirmation: false,
+    selectedTickets: '',
+    sortedColumn: () => {}
+  },
+  reducers: {
+    setSelectedTickets: (state, action) => {
+      state.selectedTickets = action.payload;
     },
-    reducers: {
-        setSelectedTickets: (state, action) => {
-            state.selectedTickets = action.payload
-        },
-        setSortedColumn: (state, action) => {
-            state.sortedColumn = action.payload
-        },
-        setDrawerOpen: (state) => {
-            state.drawerOpen = true
-        },
-        setDrawerClose: (state) => {
-            state.drawerOpen = false
-        },
+    setSortedColumn: (state, action) => {
+      state.sortedColumn = action.payload;
     },
-})
 
-export const { 
-    setSelectedTickets, 
-    setDrawerOpen, 
-    setDrawerClose,
-    setSortedColumn
-} = stateSlice.actions
+    toggleDeleteConfirmation: (state, action) => {
+      state.deleteConfirmation = action.payload;
+    }
+  }
+});
 
-export default stateSlice.reducer
+export const { setSelectedTickets, setSortedColumn, toggleDeleteConfirmation } = stateSlice.actions;
+
+export default stateSlice.reducer;

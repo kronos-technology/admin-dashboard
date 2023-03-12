@@ -8,7 +8,6 @@ import useThemeClass from 'utils/hooks/useThemeClass';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDrivers, setTableData } from './store/dataSlice';
 import { setSelectedDriver, toggleDeleteConfirmation, setSortedColumn } from './store/stateSlice';
-
 import { Avatar } from 'components/ui';
 import { FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';

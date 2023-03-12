@@ -83,13 +83,13 @@ const Checkpoints = () => {
 
   const columns = useMemo(() => [
     {
-      Header: 'Name',
+      Header: '',
       accessor: 'name',
-      sortable: true,
-      Cell: (props) => {
-        const row = props.row.original;
-        return <NameColumn row={row} />;
-      }
+      sortable: true
+      // Cell: (props) => {
+      //   const row = props.row.original;
+      //   return <NameColumn row={row} />;
+      // }
     },
     {
       Header: 'CheckpointId',

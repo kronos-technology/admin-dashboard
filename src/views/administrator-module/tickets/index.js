@@ -1,139 +1,158 @@
-import React, { useEffect, useCallback, useMemo  } from 'react'
-import { AdaptableCard } from 'components/shared'
-import AdminTable from "../components/AdminTable";
-import { injectReducer } from 'store/index'
-import reducer from './store'
-import useThemeClass from 'utils/hooks/useThemeClass'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTickets } from './store/dataSlice'
-import { Avatar } from 'components/ui'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useCallback, useMemo } from 'react';
+import { AdaptableCard } from 'components/shared';
+import AdminTable from '../components/AdminTable';
+import { injectReducer } from 'store/index';
+import reducer from './store';
+import useThemeClass from 'utils/hooks/useThemeClass';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTickets, setTableData } from './store/dataSlice';
+import { setSelectedTickets, toggleDeleteConfirmation, setSortedColumn } from './store/stateSlice';
 
-injectReducer('tickets', reducer)
+import { Avatar } from 'components/ui';
+import { FiUser } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
+import cloneDeep from 'lodash/cloneDeep';
 
-const ActionColumn = ({row}) => {
-    
-	const { textTheme } = useThemeClass()
-	const dispatch = useDispatch()
+injectReducer('tickets', reducer);
 
-	const onEdit = () => {
-		// eslint-disable-next-line no-undef
-		dispatch(setDrawerOpen())
-		// dispatch(setSelectedCustomer(row))
-	}
+const ActionColumn = ({ row }) => {
+  const dispatch = useDispatch();
+  const { textTheme } = useThemeClass();
+  const navigate = useNavigate();
 
-	return (
-		<div 
-			className={`${textTheme} cursor-pointer select-none font-semibold`}
-			onClick={onEdit}
-		>
-			Edit
-		</div>
-	)
-}
+  const onEdit = () => {
+    navigate(`/administrator/tickets-edit/${row.id}`);
+  };
 
-const NameColumn = ({row}) => {
+  const onDelete = () => {
+    dispatch(toggleDeleteConfirmation(true));
+    dispatch(setSelectedTickets(row.id));
+  };
 
-	const { textTheme } = useThemeClass()
+  return (
+    <div className="flex justify-end text-lg">
+      <span className={`cursor-pointer p-2 hover:${textTheme}`} onClick={onEdit}>
+        <HiOutlinePencil />
+      </span>
+      <span className="cursor-pointer p-2 hover:text-red-500" onClick={onDelete}>
+        <HiOutlineTrash />
+      </span>
+    </div>
+  );
+};
 
-	return (
-		<div className="flex items-center">
-			<Avatar size={28} shape="circle" src={row.img} />
-			<Link 
-				className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold`}
-				to={`/app/crm/customer-details?id=${row.id}`}
-			>
-				{row.name}
-			</Link>
-		</div>
-	)
-}
-
-const columns = [
-       	{
-		Header: 'Name',
-		accessor: 'name',
-		sortable: true,
-		Cell: props => {
-			const row = props.row.original
-			return <NameColumn row={row} />
-		},
-	},
-
-	{
-		Header: 'CheckpointId',
-		accessor: 'checkpointId',
-		// sortable: true,
-	},
-	{
-		Header: 'CompanyId',
-		accessor: 'companyId',
-		// sortable: true,
-	},
-	{
-		Header: 'DriverId',
-		accessor:'driverId',
-		// soportable: true,
-	},
-	{
-		Header: 'Plate',
-		accessor:'plate',
-		// soportable: true,
-	},
-	{
-		Header: 'RouteId',
-		accessor:'routeId',
-		// soportable: true,
-	},
-		{
-		Header: 'Timestamp',
-		accessor:'timestamp',
-		// soportable: true,
-	},
-			{
-		Header: 'VehicleNumber',
-		accessor:'vehicleNumber',
-		// soportable: true,
-	},
-			{
-		Header: '',
-		id: 'action',
-		accessor: (row) => row,
-		Cell: props => <ActionColumn row={props.row.original} />
-	},
-]
-
-
-
+const NameColumn = ({ row }) => {
+  const { textTheme } = useThemeClass();
+  const avatar = row.img ? <Avatar src={row.img} /> : <Avatar icon={<FiUser />} />;
+  return (
+    <div className="flex items-center">
+      {avatar}
+      <span className={`ml-2 rtl:mr-2 font-semibold`}>{row.name}</span>
+    </div>
+  );
+};
 
 const Tickets = () => {
-    
-    const dispatch = useDispatch()
-	const data = useSelector((state) => state.tickets.data.ticketsList)
-	const loading = useSelector((state) => state.tickets.data.loading)
-	const filterData = useSelector((state) => state.tickets.data.filterData)
-	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.tickets.data.tableData)
-	
-	const fetchData = useCallback(() => {
-        dispatch(getTickets({pageIndex, pageSize, sort, query, filterData}))
-	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		fetchData()
-	}, [fetchData, pageIndex, pageSize, sort, filterData])
-    
-    
-    
-    
-    
-    
-    return (
-        <>
-            <AdaptableCard className="h-full" bodyClass="h-full">
-            <AdminTable columns={columns} data={data}/>
-            </AdaptableCard>
-        </>
-    )
+  const { pageIndex, pageSize, sort, query, total } = useSelector(
+    (state) => state.tickets.data.tableData
+  );
+  const loading = useSelector((state) => state.tickets.data.loading);
+  const data = useSelector((state) => state.tickets.data.ticketsList);
+
+  useEffect(() => {
+    fetchData();
+  }, [pageIndex, pageSize, sort]);
+
+  const tableData = useMemo(
+    () => ({ pageIndex, pageSize, sort, query, total }),
+    [pageIndex, pageSize, sort, query, total]
+  );
+
+  const fetchData = () => {
+    dispatch(getTickets({ pageIndex, pageSize, sort, query }));
+  };
+
+  const columns = useMemo(() => [
+    {
+      Header: 'CheckpointId',
+      accessor: 'checkpointId',
+      sortable: true
+      // Cell: (props) => {
+      //   const row = props.row.original;
+      //   return <NameColumn row={row} />;
+      // }
+    },
+    {
+      Header: 'routeId',
+      accessor: 'routeId',
+      sortable: true
+    },
+
+    {
+      Header: 'Timestamp',
+      accessor: 'timestamp',
+      sortable: true
+    },
+    {
+      Header: 'Plate',
+      accessor: 'plate'
+    },
+    {
+      Header: 'DriverId',
+      accessor: 'driverId'
+    },
+
+    {
+      Header: '',
+      id: 'action',
+      accessor: (row) => row,
+      Cell: (props) => <ActionColumn row={props.row.original} />
     }
+  ]);
 
-export default Tickets
+  const onPaginationChange = (page) => {
+    const newTableData = cloneDeep(tableData);
+    newTableData.pageIndex = page;
+    dispatch(setTableData(newTableData));
+  };
+
+  const onSelectChange = (value) => {
+    const newTableData = cloneDeep(tableData);
+    newTableData.pageSize = Number(value);
+    newTableData.pageIndex = 1;
+    dispatch(setTableData(newTableData));
+  };
+
+  const onSort = (sort, sortingColumn) => {
+    const newTableData = cloneDeep(tableData);
+    newTableData.sort = sort;
+    dispatch(setTableData(newTableData));
+    dispatch(setSortedColumn(sortingColumn));
+  };
+
+  return (
+    <>
+      <AdaptableCard className="h-full" bodyClass="h-full">
+        <AdminTable
+          title="Tickets List"
+          entity="tickets"
+          columns={columns}
+          data={data}
+          skeletonAvatarColumns={[0]}
+          skeletonAvatarProps={{ className: 'rounded-md' }}
+          loading={loading}
+          pagingData={tableData}
+          onPaginationChange={onPaginationChange}
+          onSelectChange={onSelectChange}
+          onSort={onSort}
+        />
+      </AdaptableCard>
+    </>
+  );
+};
+
+export default Tickets;

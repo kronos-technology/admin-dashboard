@@ -1,33 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const stateSlice = createSlice({
-    name: 'Routes/state',
-    initialState: {
-        drawerOpen: false,
-        selectedRoutes: {},
-        sortedColumn: () => {},
+  name: 'Routes/state',
+  initialState: {
+    deleteConfirmation: false,
+    selectedRoutes: {},
+    sortedColumn: () => {}
+  },
+  reducers: {
+    setSelectedRoutes: (state, action) => {
+      state.selectedRoutes = action.payload;
     },
-    reducers: {
-        setSelectedRoutes: (state, action) => {
-            state.selectedRoutes = action.payload
-        },
-        setSortedColumn: (state, action) => {
-            state.sortedColumn = action.payload
-        },
-        setDrawerOpen: (state) => {
-            state.drawerOpen = true
-        },
-        setDrawerClose: (state) => {
-            state.drawerOpen = false
-        },
+    setSortedColumn: (state, action) => {
+      state.sortedColumn = action.payload;
     },
-})
+    toggleDeleteConfirmation: (state, action) => {
+      state.deleteConfirmation = action.payload;
+    }
+  }
+});
 
-export const { 
-    setSelectedRoutes, 
-    setDrawerOpen, 
-    setDrawerClose,
-    setSortedColumn
-} = stateSlice.actions
+export const { setSelectedRoutes, toggleDeleteConfirmation, setSortedColumn } = stateSlice.actions;
 
-export default stateSlice.reducer
+export default stateSlice.reducer;
