@@ -2,8 +2,7 @@ import React from 'react'
 import { AdaptableCard } from 'components/shared'
 import { DataTable } from 'components/shared'
 import AdminTableTools from './AdminTableTools'
-import AdminTableFilter from './AdminTableFilter'
-
+import { ConfirmDialog } from 'components/shared'
 
 const AdminTable = (props) => {
 
@@ -19,6 +18,9 @@ const AdminTable = (props) => {
         onPaginationChange,
         onSelectChange,
         onSort,
+        onDelete,
+        dialogOpen=false,
+        onDialogClose,
     } = props
 
     return (
@@ -32,13 +34,29 @@ const AdminTable = (props) => {
                 columns={columns}
                 data={data}
                 skeletonAvatarColumns={skeletonAvatarColumns}
-                skeletonAvatarProps={{className: 'rounded-md'}}
+                skeletonAvatarProps={skeletonAvatarProps}
 				loading={loading}
 				pagingData={pagingData}
 				onPaginationChange={onPaginationChange}
 				onSelectChange={onSelectChange}
 				onSort={onSort}
             />
+            <ConfirmDialog
+                isOpen={dialogOpen}
+                onClose={onDialogClose}
+                onRequestClose={onDialogClose}
+                type="danger"
+                title={`Delete ${entity}`}
+                onCancel={onDialogClose}
+                onConfirm={onDelete}
+                confirmButtonColor="red-600"
+            >
+			<p>
+				Are you sure you want to delete this {entity}? 
+				All record related to this {entity} will be deleted as well. 
+				This action cannot be undone.
+			</p>
+		</ConfirmDialog>
             </AdaptableCard>
         </>
     )

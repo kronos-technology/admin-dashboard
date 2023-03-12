@@ -1,16 +1,13 @@
 import React, { useEffect, useCallback, useMemo } from 'react'
-import { AdaptableCard } from 'components/shared'
 import AdminTable from "../components/AdminTable";
-import AdminTableTools from "../components/AdminTableTools";
 import { injectReducer } from 'store/index'
 import reducer from './store'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDrivers, setTableData } from './store/dataSlice'
+import { getDrivers, deleteDriver, setTableData } from './store/dataSlice'
 import { setSelectedDriver, toggleDeleteConfirmation, setSortedColumn} from "./store/stateSlice";
-import { Avatar } from 'components/ui'
+import { Avatar, toast, Notification } from 'components/ui'
 import { FiUser } from 'react-icons/fi'
-import { Link } from 'react-router-dom';
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
 import cloneDeep from 'lodash/cloneDeep'
@@ -67,7 +64,8 @@ const DriverTable = () => {
 	)
 	const loading = useSelector((state) => state.adminDriverList.data.loading)
 	const data = useSelector((state) => state.adminDriverList.data.driverList)
-	
+	const dialogOpen = useSelector((state) => state.adminDriverList.state.deleteConfirmation)
+	const selectedDriver = useSelector((state) => state.adminDriverList.state.selectedDriver)
 
 	useEffect(() => {
 		fetchData()
@@ -141,6 +139,28 @@ const DriverTable = () => {
 		dispatch(setSortedColumn(sortingColumn))
 	}
 
+	const onConfirmDelete = async () => {
+		dispatch(toggleDeleteConfirmation(false))
+		const driver = data.find((driver) => driver.id === selectedDriver)		
+		const id = driver.driverId
+		const success = await deleteDriver(id)
+		if(success){
+			dispatch(getDrivers(tableData))
+			toast.push(
+				<Notification title={"Successfuly Deleted"} type="success" duration={2500}>
+					{`Driver ${driver.name} ${driver.lastName} was successfuly deleted`}
+				</Notification>
+				,{
+					placement: 'top-center'
+				}
+			)
+		}
+	}
+
+	const onDialogClose = () => {
+		dispatch(toggleDeleteConfirmation(false))
+	}
+
     return (
         <>
             <AdminTable 
@@ -155,6 +175,9 @@ const DriverTable = () => {
 				onPaginationChange={onPaginationChange}
 				onSelectChange={onSelectChange}
 				onSort={onSort}
+				onDelete={onConfirmDelete}
+				dialogOpen={dialogOpen}
+				onDialogClose={onDialogClose}
 			/>
         </>
     )

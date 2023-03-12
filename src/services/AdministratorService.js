@@ -7,6 +7,13 @@ export async function apiGetDrivers () {
     })
 }
 
+export async function apiDeleteDriver (driverId) {
+    return ApiService.fetchData({
+        url: `/admin/drivers/${driverId}`,
+        method: 'delete',
+    })
+}
+
 export async function apiGetCompanies () {
     return ApiService.fetchData({
         url: '/admin/companies',

@@ -1,10 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetDrivers  } from 'services/AdministratorService'
+import { apiGetDrivers, apiDeleteDriver  } from 'services/AdministratorService'
 
 export const getDrivers = createAsyncThunk('admin/drivers',async () => {
     const response = await apiGetDrivers()
     return response.data
 })
+
+export const deleteDriver = async (driverId) => {
+    const response = await apiDeleteDriver(driverId)
+    return response
+}
 
 const dataSlice = createSlice({
     name: 'adminDriverList/data',
